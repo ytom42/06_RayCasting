@@ -1,8 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tools.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/12/16 11:29:59 by ytomiyos          #+#    #+#             */
+/*   Updated: 2020/12/31 10:54:55 by ytomiyos         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 unsigned long createRGB(int r, int g, int b)
 {
-	return ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
+	printf("r -> %d\n", r);
+	printf("g -> %d\n", g);
+	printf("b -> %d\n", b);
+	return (r * 256 * 256 + g * 256 + b);
 }
 
 int ft_strlen(char *s)
@@ -80,7 +95,7 @@ char *ft_hextoa(unsigned int  hex)
 	return (ptr);
 }
 
-char *itoa(int n)
+char *ft_itoa(int n)
 {
 	int minus;
 	int len;
