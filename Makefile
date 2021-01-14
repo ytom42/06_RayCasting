@@ -6,7 +6,7 @@
 #    By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/19 23:21:23 by ytomiyos          #+#    #+#              #
-#    Updated: 2020/12/19 23:21:25 by ytomiyos         ###   ########.fr        #
+#    Updated: 2021/01/14 11:36:03 by ytomiyos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,9 @@ SRCS	=	cub3d.c \
 			tools2.c \
 			init.c \
 			map.c \
-			textures.c 
-
+			check_map.c \
+			textures.c \
+			bmp.c
 OBJS	=	$(SRCS:.c=.o)
 
 all		:	$(NAME)

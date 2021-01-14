@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 20:23:37 by ytomiyos          #+#    #+#             */
-/*   Updated: 2020/12/29 08:26:57 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/01/13 22:26:53 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*skip_space(char *line, int *i)
 	return (NULL);
 }
 
-int		check_map(t_all *s, char *line)
+int		check_line(t_all *s, char *line)
 {
 	int		i;
 	int		len;

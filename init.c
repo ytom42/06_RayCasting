@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 20:25:07 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/01 17:21:05 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/01/13 22:12:03 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	init_all(t_all *s)
 {
 	s->mlx = mlx_init();
 	init_flag(s);
-	
+	init_sprite(s);
 	init_map(s);
 	init_window(s);
 	init_texaddr(s);

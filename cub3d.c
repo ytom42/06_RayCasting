@@ -6,23 +6,11 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 11:30:01 by ytomiyos          #+#    #+#             */
-/*   Updated: 2020/12/31 10:57:16 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/01/13 22:11:47 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-// #define numSprites 3
-
-// t_sprite sprite[numSprites] =
-// {
-// 	{5,10},
-// 	{10.0,10.0},
-// 	{11.0,11.0},
-// };
-
-// int spriteOrder[numSprites];
-// double spriteDistance[numSprites];
 
 void sortSprites(int* order, double* dist, int amount)
 {
@@ -33,11 +21,6 @@ void sortSprites(int* order, double* dist, int amount)
 
 	flag = 1;
 	i = 0;
-	// while (i < amount)
-	// {
-	// 	printf("%f\n", dist[i]);
-	// 	i++;
-	// }
 	while (flag)
 	{
 		flag = 0;
@@ -57,18 +40,7 @@ void sortSprites(int* order, double* dist, int amount)
 			i++;
 		}
 	}
-	// i = 0;
-	// while (i < amount)
-	// {
-	// 	printf("%d -> %f\n", order[i], dist[i]);
-	// 	i++;
-	// }
-	// printf("\n");
 }
-
-
-
-
 
 int		put_img(t_all *s)
 {
@@ -189,10 +161,8 @@ int		put_img(t_all *s)
 		s->spriteDistance[i] = ((s->posX - s->sprites[i].x) * (s->posX - s->sprites[i].x) + (s->posY - s->sprites[i].y) * (s->posY - s->sprites[i].y)); //sqrt not taken, unneeded
 	}
 	sortSprites(s->spriteOrder, s->spriteDistance, s->sprite_len);
-	// /*
 	for(int i = 0; i < s->sprite_len; i++)
 	{
-		//translate sprite position to relative to camera
 		double spriteX = s->sprites[s->spriteOrder[i]].x - s->posX;
 		double spriteY = s->sprites[s->spriteOrder[i]].y - s->posY;
 
@@ -202,21 +172,17 @@ int		put_img(t_all *s)
 		double transformY = invDet * (-(s->planeY) * spriteX + s->planeX * spriteY);
 		int spriteScreenX = (int)((s->screenWidth / 2) * (1 + transformX / transformY));
 
-		#define uDiv 1
-		#define vDiv 1
-		#define vMove 0.0
-		int vMoveScreen = (int)(vMove / transformY);
-
-		int spriteHeight = abs((int)(s->screenHeight / (transformY))) / vDiv;
-		//calculate lowest and highest pixel to fill in current stripe
-		int drawStartY = (-spriteHeight / 2) + (s->screenHeight / 2) + vMoveScreen;
+		// #define vMove 0.0
+		// int vMoveScreen = (int)(vMove / transformY);
+		int spriteHeight = abs((int)(s->screenHeight / (transformY)));
+		int drawStartY = (-spriteHeight / 2) + (s->screenHeight / 2);
 		if(drawStartY < 0)
 			drawStartY = 0;
-		int drawEndY = (spriteHeight / 2) + (s->screenHeight / 2) + vMoveScreen;
+		int drawEndY = (spriteHeight / 2) + (s->screenHeight / 2);
 		if(drawEndY >= s->screenHeight)
 			drawEndY = s->screenHeight - 1;
 
-		int spriteWidth = abs((int)(s->screenHeight / (transformY))) / uDiv;
+		int spriteWidth = abs((int)(s->screenHeight / (transformY)));
 		int drawStartX = -spriteWidth / 2 + spriteScreenX;
 		if(drawStartX < 0)
 			drawStartX = 0;
@@ -224,46 +190,20 @@ int		put_img(t_all *s)
 		if(drawEndX >= s->screenWidth)
 			drawEndX = s->screenWidth - 1;
 
-		// printf("\nx -> %d\n", x);
-		// printf("drawStart -> %d\ndrawEnd -> %d\n", drawStartX, drawEndY);
 		for(int stripe = drawStartX; stripe < drawEndX; stripe++)
 		{
 			s->texX = (int)(256 * (stripe - (-spriteWidth / 2 + spriteScreenX)) * texWidth / spriteWidth) / 256;
 			if(transformY > 0 && stripe > 0 && stripe < s->screenWidth && transformY < s->buf.ZBuffer[stripe])
 			{
-				for(int y = drawStartY; y < drawEndY; y++) //for every pixel of the current stripe
+				for(int y = drawStartY; y < drawEndY; y++)
 				{
-					int d = (y-vMoveScreen) * 256 - s->screenHeight * 128 + spriteHeight * 128;
+					int d = y * 256 - s->screenHeight * 128 + spriteHeight * 128;
 					s->texY = ((d * texHeight) / spriteHeight) / 256;
-					// Uint32 color = texture[sprite[spriteOrder[i]].texture][texWidth * texY + texX]; //get current color from the texture
-					// printf("\nx -> %d\n", stripe);
-					// printf("y -> %d\n", y);
-					// printf("texX -> %d\n", texX);
-					// printf("texY -> %d\n", texY);
 					my_mlx_pixel_put3(s, stripe, y, &s->tex_SP);
-					// if((color & 0x00FFFFFF) != 0)
-					// 	buffer[y][stripe] = color; //paint pixel if it isn't black, black is the invisible color
 				}
 			}
 		}
 	}
-	// -------------------------------------------------------------------------------------------
-	// */
-	// int i;
-	// int j;
-
-	// i = 0;
-	// while (i < texWidth)
-	// {
-	// 	j = 0;
-	// 	while (j < texHeight)
-	// 	{
-	// 		my_mlx_pixel_put2(s, i, j, &s->tex_SP, i, j);
-	// 		j++;
-	// 	}
-	// 	i++;
-	// }
-	// -------------------------------------------------------------------------------------------
 	mlx_put_image_to_window(s->mlx, s->win, s->img.img, 0, 0);
 	return (0);
 }
@@ -345,23 +285,35 @@ int	check_key(int keycode, t_all *s)
 	return (0);
 }
 
-int	main(void)
+int		check_name(char *name)
+{
+	int		i;
+	int		len;
+	char	*save;
+
+	i = 0;
+	save = "--save";
+	len = ft_strlen(name);
+	if (len != 6)
+		return (0);
+	while (name[i])
+	{
+		if (name[i] != save[i])
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int	main(int ac, char **av)
 {
 	t_all	s;
 
 	init_all(&s);
-	printf("sprites -> %d\n", s.sprite_len);
-	int i = 0;
-	while (i < s.sprite_len)
-	{
-		printf("---sprite[%d]---\n", i);
-		printf("x = %f\ny = %f\n", s.sprites[i].x, s.sprites[i].y);
-		printf("---------------\n");
-		i++;
-	}
 	put_img(&s);
+	if (ac == 2 && check_name(av[1]))
+		create_bmp(&s);
 	mlx_hook(s.win, 2, 0, check_key, &s);
 	mlx_loop(s.mlx);
 	return (0);
 }
-

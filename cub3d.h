@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 11:30:10 by ytomiyos          #+#    #+#             */
-/*   Updated: 2020/12/29 08:28:26 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/01/14 11:34:52 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@
 #define texWidth			64
 #define texHeight			64
 
-#define CUB "tex.cub"
+#define CUB "test2.cub"
 
 typedef struct	s_tex
 {
@@ -160,6 +160,8 @@ typedef struct	s_all
 	t_sprite	*sprites;
 	int			*spriteOrder;
 	double		*spriteDistance;
+
+	int			**fill_map;
 }				t_all;
 
 
@@ -178,7 +180,8 @@ unsigned long	createRGB(int r, int g, int b);
 int				gnl(int fd, char **line);
 char			*skip_space(char *line, int *i);
 int				check_flag(t_all *s);
-int				check_map(t_all *s, char *line);
+int				check_line(t_all *s, char *line);
+void			check_map(t_all *s, int map_height);
 void			my_mlx_pixel_put(t_all *s, int x, int y, int color);
 void			my_mlx_pixel_put2(t_all *s, int x, int y, t_tex *tex);
 void			my_mlx_pixel_put3(t_all *s, int x, int y, t_tex *tex);
@@ -192,3 +195,8 @@ char			*ft_strjoin(char *s1, char *s2);
 char			*ft_itoa(int n);
 char			*ft_hextoa(unsigned int  hex);
 void			init_window(t_all *s);
+
+void			create_bmp(t_all *s);
+void			bmp_file(t_all *s, int fd);
+void			bmp_info(t_all *s, int fd);
+void			bmp_data(t_all *s, int fd);

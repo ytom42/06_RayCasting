@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 10:11:09 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/01 17:22:00 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/01/14 11:35:29 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,7 @@ void	first_read(t_all *s, int *before_line, int *map_height)
 	{
 		if (ft_strlen(line) < 3)
 			continue ;
-		if (check_map(s, line))
+		if (check_line(s, line))
 			break ;
 		*map_height += 1;
 	}
@@ -150,7 +150,7 @@ void	first_read(t_all *s, int *before_line, int *map_height)
 	close(fd);
 }
 
-void	second_read(t_all *s, int *before_line, int *map_height)
+void	second_read(t_all *s, int *before_line, int map_height)
 {
 	int		fd;
 	int		index;
@@ -163,7 +163,7 @@ void	second_read(t_all *s, int *before_line, int *map_height)
 		gnl(fd, &line);
 		*before_line -= 1;
 	}
-	while (*map_height)
+	while (map_height)
 	{
 		gnl(fd, &line);
 		if (ft_strlen(line) < 3)
@@ -172,7 +172,7 @@ void	second_read(t_all *s, int *before_line, int *map_height)
 			break ;
 		printf("build -> %s\n", line);
 		index++;
-		*map_height -= 1;
+		map_height -= 1;
 	}
 	close(fd);
 }
@@ -188,5 +188,21 @@ void	init_map(t_all *s)
 	printf("sprites -> %d\n", s->sprite_len);
 	init_sprite(s);
 	s->map = (int**)malloc(sizeof(int*) * map_height);
-	second_read(s, &before_line, &map_height);
+	second_read(s, &before_line, map_height);
+	check_map(s, map_height);
+	int i;
+	int j;
+	i = 0;
+	j = 0;
+	while (i < s->map_height)
+	{
+		j = 0;
+		while (j < s->map_width)
+		{
+			printf("%d", s->fill_map[i][j]);
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
 }
