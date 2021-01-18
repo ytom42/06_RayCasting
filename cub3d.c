@@ -6,43 +6,13 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 11:30:01 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/13 22:11:47 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/01/19 01:53:09 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void sortSprites(int* order, double* dist, int amount)
-{
-	int i;
-	int flag;
-	int i_tmp;
-	double d_tmp;
-
-	flag = 1;
-	i = 0;
-	while (flag)
-	{
-		flag = 0;
-		i = 0;
-		while (i < (amount-1))
-		{
-			i_tmp = order[i];
-			d_tmp = dist[i];
-			if (dist[i] < dist[i+1])
-			{
-				order[i] = order[i+1];
-				dist[i] = dist[i+1];
-				order[i+1] = i_tmp;
-				dist[i+1] = d_tmp;
-				flag = 1;
-			}
-			i++;
-		}
-	}
-}
-
-int		put_img(t_all *s)
+void	put_wall(t_all *s)
 {
 	int x;
 	int y;
@@ -137,13 +107,13 @@ int		put_img(t_all *s)
 				s->texY = (int)s->texPos & (texHeight - 1);
 				s->texPos += s->step;
 				if (s->side == 1 && s->rayDirY >= 0)
-					my_mlx_pixel_put2(s, x, y, &s->tex_N);
+					my_mlx_pixel_put2(s, x, y, &s->texs.tex_N);
 				else if (s->side == 1)
-					my_mlx_pixel_put2(s, x, y, &s->tex_S);
+					my_mlx_pixel_put2(s, x, y, &s->texs.tex_S);
 				else if (s->rayDirX >= 0)
-					my_mlx_pixel_put2(s, x, y, &s->tex_E);
+					my_mlx_pixel_put2(s, x, y, &s->texs.tex_E);
 				else
-					my_mlx_pixel_put2(s, x, y, &s->tex_W);
+					my_mlx_pixel_put2(s, x, y, &s->texs.tex_W);
 			}
 			else if (y < (s->screenHeight / 2))
 				my_mlx_pixel_put(s, x, y, s->ceiling_color);
@@ -155,13 +125,15 @@ int		put_img(t_all *s)
 		x++;
 	}
 
-	for(int i = 0; i < s->sprite_len; i++)
-	{
-		s->spriteOrder[i] = i;
-		s->spriteDistance[i] = ((s->posX - s->sprites[i].x) * (s->posX - s->sprites[i].x) + (s->posY - s->sprites[i].y) * (s->posY - s->sprites[i].y)); //sqrt not taken, unneeded
-	}
-	sortSprites(s->spriteOrder, s->spriteDistance, s->sprite_len);
-	for(int i = 0; i < s->sprite_len; i++)
+}
+
+
+void	put_sprite(t_all *s)
+{
+	int		i;
+
+	i = 0;
+	while (i < s->sprite_len)
 	{
 		double spriteX = s->sprites[s->spriteOrder[i]].x - s->posX;
 		double spriteY = s->sprites[s->spriteOrder[i]].y - s->posY;
@@ -172,8 +144,6 @@ int		put_img(t_all *s)
 		double transformY = invDet * (-(s->planeY) * spriteX + s->planeX * spriteY);
 		int spriteScreenX = (int)((s->screenWidth / 2) * (1 + transformX / transformY));
 
-		// #define vMove 0.0
-		// int vMoveScreen = (int)(vMove / transformY);
 		int spriteHeight = abs((int)(s->screenHeight / (transformY)));
 		int drawStartY = (-spriteHeight / 2) + (s->screenHeight / 2);
 		if(drawStartY < 0)
@@ -199,11 +169,20 @@ int		put_img(t_all *s)
 				{
 					int d = y * 256 - s->screenHeight * 128 + spriteHeight * 128;
 					s->texY = ((d * texHeight) / spriteHeight) / 256;
-					my_mlx_pixel_put3(s, stripe, y, &s->tex_SP);
+					my_mlx_pixel_put3(s, stripe, y, &s->texs.tex_SP);
 				}
 			}
 		}
+		i++;
 	}
+	
+}
+
+int		put_img(t_all *s)
+{
+	put_wall(s);
+	sort_sprites(s);
+	put_sprite(s);
 	mlx_put_image_to_window(s->mlx, s->win, s->img.img, 0, 0);
 	return (0);
 }
@@ -313,7 +292,10 @@ int	main(int ac, char **av)
 	put_img(&s);
 	if (ac == 2 && check_name(av[1]))
 		create_bmp(&s);
-	mlx_hook(s.win, 2, 0, check_key, &s);
-	mlx_loop(s.mlx);
+	else
+	{
+		mlx_hook(s.win, 2, 0, check_key, &s);
+		mlx_loop(s.mlx);
+	}
 	return (0);
 }

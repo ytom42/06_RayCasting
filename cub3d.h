@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 11:30:10 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/14 11:34:52 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/01/19 03:08:00 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@
 #define YELLOW				0x00FFFF00
 #define CYAN				0x0000FFFF
 
-#define mapWidth			24
-#define mapHeight			24
 #define texWidth			64
 #define texHeight			64
 
@@ -93,18 +91,48 @@ typedef struct	s_sprite
 	double y;
 }				t_sprite;
 
+typedef struct	s_texs
+{
+	t_tex		tex_E;
+	t_tex		tex_W;
+	t_tex		tex_S;
+	t_tex		tex_N;
+	t_tex		tex_SP;
+}				t_texs;
+
 typedef struct	s_all
 {
 	void		*mlx;
+
+	int			sprite_len;
+	t_sprite	*sprites;
+	int			*spriteOrder;
+	double		*spriteDistance;
+
+	int				map_width;
+	int				map_height;
+	int				**map;
+
 	void		*win;
-
-	int			screenWidth;
-	int			screenHeight;
-
 	t_img		img;
 
+	double		time;
+	double		oldTime;
 	double		moveSpeed;
 	double		rotSpeed;
+	t_buf		buf;
+
+	t_flag		flag;
+	t_texs		texs;
+
+	int				screenWidth;
+	int				screenHeight;
+	unsigned long	ceiling_color;
+	unsigned long	floor_color;
+
+
+
+
 	double		oldDirX;
 	double		oldPlaneX;
 
@@ -114,15 +142,9 @@ typedef struct	s_all
 	double		dirY;
 	double		planeX;
 	double		planeY;
-	double		time;
-	double		oldTime;
 
-	unsigned long	ceiling_color;
-	unsigned long	floor_color;
 
-	int				**map;
-	int				map_width;
-	int				map_height;
+	int			**fill_map;
 
 	double		cameraX;
 	double		rayDirX;
@@ -147,26 +169,11 @@ typedef struct	s_all
 	int			texY;
 	double		step;
 	double		texPos;
-
-	t_tex		tex_E;
-	t_tex		tex_W;
-	t_tex		tex_S;
-	t_tex		tex_N;
-	t_tex		tex_SP;
-	t_flag		flag;
-	t_buf		buf;
-
-	int			sprite_len;
-	t_sprite	*sprites;
-	int			*spriteOrder;
-	double		*spriteDistance;
-
-	int			**fill_map;
 }				t_all;
-
 
 void			init_all(t_all *s);
 void			init_flag(t_all *s);
+void			init_var(t_all *s);
 void			init_sprite(t_all *s);
 void			init_map(t_all *s);
 void			init_window(t_all *s);
@@ -180,7 +187,7 @@ unsigned long	createRGB(int r, int g, int b);
 int				gnl(int fd, char **line);
 char			*skip_space(char *line, int *i);
 int				check_flag(t_all *s);
-int				check_line(t_all *s, char *line);
+int				check_line(t_all *s, char *line, int index);
 void			check_map(t_all *s, int map_height);
 void			my_mlx_pixel_put(t_all *s, int x, int y, int color);
 void			my_mlx_pixel_put2(t_all *s, int x, int y, t_tex *tex);
@@ -195,6 +202,13 @@ char			*ft_strjoin(char *s1, char *s2);
 char			*ft_itoa(int n);
 char			*ft_hextoa(unsigned int  hex);
 void			init_window(t_all *s);
+void			sort_sprites(t_all *s);
+int				put_img(t_all *s);
+void			put_wall(t_all *s);
+void			put_sprite(t_all *s);
+void			first_read(t_all *s, int *before_line, int *map_height);
+void			second_read(t_all *s, int *before_line);
+
 
 void			create_bmp(t_all *s);
 void			bmp_file(t_all *s, int fd);

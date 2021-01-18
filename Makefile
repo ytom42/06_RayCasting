@@ -6,7 +6,7 @@
 #    By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/19 23:21:23 by ytomiyos          #+#    #+#              #
-#    Updated: 2021/01/14 11:36:03 by ytomiyos         ###   ########.fr        #
+#    Updated: 2021/01/19 03:08:41 by ytomiyos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,12 @@ SRCS	=	cub3d.c \
 			map.c \
 			check_map.c \
 			textures.c \
-			bmp.c
+			bmp.c \
+			sprite.c \
+			first_read.c \
+			second_read.c \
+			error.c
+
 OBJS	=	$(SRCS:.c=.o)
 
 all		:	$(NAME)
@@ -38,6 +43,7 @@ clean	:
 
 fclean	:	clean
 			rm -f $(NAME)
+			rm -f window.bmp
 
 re		:	fclean all
 

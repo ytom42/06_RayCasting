@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 11:35:12 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/14 11:35:50 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/01/19 01:33:25 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,11 @@ void	check_map(t_all *s, int map_height)
 	int w;
 
 	i = 0;
-	s->fill_map = (int**)malloc(sizeof(int*) * map_height);
+	s->fill_map = (int**)malloc(sizeof(int*) * (map_height + 1));
 	while (i < s->map_height)
 	{
 		j = 0;
-		s->fill_map[i] = ((int*)malloc(sizeof(int*) * s->map_width));
+		s->fill_map[i] = ((int*)malloc(sizeof(int) * (s->map_width + 1)));
 		while (j < s->map_width)
 		{
 			s->fill_map[i][j] = s->map[i][j];
@@ -65,4 +65,5 @@ void	check_map(t_all *s, int map_height)
 	printf("x->%d\ny->%d\n", h, w);
 	flood_fill(s, h, w);
 	// free s->fill_map
+	printf("done!! check_map\n");
 }

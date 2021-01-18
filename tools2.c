@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 20:23:37 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/13 22:26:53 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/01/19 01:01:59 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,24 +21,6 @@ char	*skip_space(char *line, int *i)
 		*i += 1;
 	}
 	return (NULL);
-}
-
-int		check_line(t_all *s, char *line)
-{
-	int		i;
-	int		len;
-
-	i = 0;
-	len = ft_strlen(line);
-	if (s->map_width < len)
-		s->map_width = len;
-	while (line[i])
-	{
-		if (line[i] == '2')
-			s->sprite_len += 1;
-		i++;
-	}
-	return (0);
 }
 
 int		check_flag(t_all *s)

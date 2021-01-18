@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 11:29:59 by ytomiyos          #+#    #+#             */
-/*   Updated: 2020/12/31 10:54:55 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/01/18 21:59:33 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 unsigned long createRGB(int r, int g, int b)
 {
-	printf("r -> %d\n", r);
-	printf("g -> %d\n", g);
-	printf("b -> %d\n", b);
 	return (r * 256 * 256 + g * 256 + b);
 }
 

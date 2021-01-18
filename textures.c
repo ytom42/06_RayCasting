@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 10:09:08 by ytomiyos          #+#    #+#             */
-/*   Updated: 2020/12/31 10:57:41 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/01/18 22:44:52 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,22 +47,22 @@ void	init_wall(t_all *s, char *line, int n)
 	skip_space(line, &i);
 	if (n == 0)
 	{
-		s->tex_N.img = mlx_xpm_file_to_image(s->mlx, &line[i], &s->tex_N.width, &s->tex_N.height);
+		s->texs.tex_N.img = mlx_xpm_file_to_image(s->mlx, &line[i], &s->texs.tex_N.width, &s->texs.tex_N.height);
 		s->flag.NO = 1;
 	}
 	else if (n == 1)
 	{
-		s->tex_S.img = mlx_xpm_file_to_image(s->mlx, &line[i], &s->tex_S.width, &s->tex_S.height);
+		s->texs.tex_S.img = mlx_xpm_file_to_image(s->mlx, &line[i], &s->texs.tex_S.width, &s->texs.tex_S.height);
 		s->flag.SO = 1;
 	}
 	else if (n == 2)
 	{
-		s->tex_E.img = mlx_xpm_file_to_image(s->mlx, &line[i], &s->tex_E.width, &s->tex_E.height);
+		s->texs.tex_E.img = mlx_xpm_file_to_image(s->mlx, &line[i], &s->texs.tex_E.width, &s->texs.tex_E.height);
 		s->flag.WE = 1;
 	}
 	else if (n == 3)
 	{
-		s->tex_W.img = mlx_xpm_file_to_image(s->mlx, &line[i], &s->tex_W.width, &s->tex_W.height);
+		s->texs.tex_W.img = mlx_xpm_file_to_image(s->mlx, &line[i], &s->texs.tex_W.width, &s->texs.tex_W.height);
 		s->flag.EA = 1;
 	}
 }
@@ -74,7 +74,7 @@ void	init_tex(t_all *s, char *line)
 	i = 0;
 	line += 1;
 	skip_space(line, &i);
-	s->tex_SP.img = mlx_xpm_file_to_image(s->mlx, &line[i], &s->tex_SP.width, &s->tex_SP.height);
+	s->texs.tex_SP.img = mlx_xpm_file_to_image(s->mlx, &line[i], &s->texs.tex_SP.width, &s->texs.tex_SP.height);
 	s->flag.S = 1;
 }
 
