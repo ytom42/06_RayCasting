@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 10:09:08 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/18 22:44:52 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/01/19 03:24:31 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void	init_floor_ceiling(t_all *s, char *line, int n)
 			b = (b * 10) + (line[i] - '0');
 			i++;
 		}
-		s->floor_color = createRGB(r, g, b);
+		s->floor_color = create_rgb(r, g, b);
 		s->flag.F = 1;
 	}
 	else if (n == 1)
@@ -132,7 +132,7 @@ void	init_floor_ceiling(t_all *s, char *line, int n)
 			b = (b * 10) + (line[i] - '0');
 			i++;
 		}
-		s->ceiling_color = createRGB(r, g, b);
+		s->ceiling_color = create_rgb(r, g, b);
 		s->flag.C = 1;
 	}
 }

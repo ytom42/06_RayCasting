@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 21:40:56 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/19 01:55:46 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/01/20 22:29:43 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ void	create_bmp(t_all *s)
 {
 	int		fd;
 
-	mlx_destroy_window(s->mlx, s->win);
 	fd = open("window.bmp", O_CREAT | O_WRONLY | O_TRUNC, S_IRWXU);
 	bmp_file(s, fd);
 	bmp_info(s, fd);

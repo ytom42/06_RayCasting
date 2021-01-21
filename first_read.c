@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 01:00:45 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/19 01:21:17 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/01/19 13:42:11 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,10 @@ void	first_read(t_all *s, int *before_line, int *map_height)
 	}
 	s->map_height = *map_height;
 	close(fd);
+	if (!(check_flag(s)))
+		end(s, 2);
+	if (s->flag.POS == 0)
+		end(s, 3);
 	printf("\tR  = %d\n", s->flag.R);
 	printf("\tNO = %d\n", s->flag.NO);
 	printf("\tSO = %d\n", s->flag.SO);

@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 11:30:10 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/19 03:08:00 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/01/21 10:39:15 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ typedef struct	s_tex
 	int			height;
 }				t_tex;
 
-typedef struct s_flag
+typedef struct	s_flag
 {
 	int		R;
 	int		NO;
@@ -100,6 +100,23 @@ typedef struct	s_texs
 	t_tex		tex_SP;
 }				t_texs;
 
+typedef struct	s_sp
+{
+	double		sprite_x;
+	double		sprite_y;
+	double		invdet;
+	double		transform_x;
+	double		transform_y;
+	int			spritescreen_x;
+	int			sprite_h;
+	int			sprite_w;
+	int			drawstart_x;
+	int			drawstart_y;
+	int			drawend_x;
+	int			drawend_y;
+	int			stripe;
+}				t_sp;
+
 typedef struct	s_all
 {
 	void		*mlx;
@@ -108,6 +125,7 @@ typedef struct	s_all
 	t_sprite	*sprites;
 	int			*spriteOrder;
 	double		*spriteDistance;
+	t_sp		sp;
 
 	int				map_width;
 	int				map_height;
@@ -130,9 +148,6 @@ typedef struct	s_all
 	unsigned long	ceiling_color;
 	unsigned long	floor_color;
 
-
-
-
 	double		oldDirX;
 	double		oldPlaneX;
 
@@ -142,7 +157,6 @@ typedef struct	s_all
 	double		dirY;
 	double		planeX;
 	double		planeY;
-
 
 	int			**fill_map;
 
@@ -178,12 +192,12 @@ void			init_sprite(t_all *s);
 void			init_map(t_all *s);
 void			init_window(t_all *s);
 void			init_texaddr(t_all *s);
-
+int				check_key(int keycode, t_all *s);
 void			read_line(t_all *s, char *line);
 void			init_wall(t_all *s, char *line, int n);
 void			init_floor_ceiling(t_all *s, char *line, int n);
 void			init_tex(t_all *s, char *line);
-unsigned long	createRGB(int r, int g, int b);
+unsigned long	create_rgb(int r, int g, int b);
 int				gnl(int fd, char **line);
 char			*skip_space(char *line, int *i);
 int				check_flag(t_all *s);
@@ -209,8 +223,9 @@ void			put_sprite(t_all *s);
 void			first_read(t_all *s, int *before_line, int *map_height);
 void			second_read(t_all *s, int *before_line);
 
-
 void			create_bmp(t_all *s);
 void			bmp_file(t_all *s, int fd);
 void			bmp_info(t_all *s, int fd);
 void			bmp_data(t_all *s, int fd);
+
+void	end(t_all *s, int n);

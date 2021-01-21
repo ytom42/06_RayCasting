@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 20:25:07 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/19 01:33:49 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/01/20 22:26:00 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	init_flag(t_all *s)
 void	init_window(t_all *s)
 {
 	// 取得失敗時のエラー処理
-	s->win = mlx_new_window(s->mlx, s->screenWidth, s->screenHeight, "cub3D");
+	
 	s->img.img = mlx_new_image(s->mlx, s->screenWidth, s->screenHeight);
 	s->img.addr = mlx_get_data_addr(s->img.img, &s->img.bpp, &s->img.line_len, &s->img.endian);
 	s->buf.ZBuffer = (double*)malloc(sizeof(double) * (s->screenWidth + 1)); //widthが決まった後ではならない

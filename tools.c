@@ -6,13 +6,13 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 11:29:59 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/18 21:59:33 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/01/19 03:23:27 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-unsigned long createRGB(int r, int g, int b)
+unsigned long create_rgb(int r, int g, int b)
 {
 	return (r * 256 * 256 + g * 256 + b);
 }

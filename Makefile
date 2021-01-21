@@ -6,7 +6,7 @@
 #    By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/19 23:21:23 by ytomiyos          #+#    #+#              #
-#    Updated: 2021/01/19 03:08:41 by ytomiyos         ###   ########.fr        #
+#    Updated: 2021/01/19 11:58:06 by ytomiyos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,10 @@ SRCS	=	cub3d.c \
 			sprite.c \
 			first_read.c \
 			second_read.c \
+			put_wall.c \
+			put_sprite.c \
+			check_key.c \
+			free.c \
 			error.c
 
 OBJS	=	$(SRCS:.c=.o)
