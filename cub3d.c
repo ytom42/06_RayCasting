@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 11:30:01 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/20 22:28:52 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/01/22 00:14:40 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int		main(int ac, char **av)
 	}
 	else
 	{
-		s.win = mlx_new_window(s.mlx, s.screenWidth, s.screenHeight, "cub3D");
+		s.win = mlx_new_window(s.mlx, s.screen_w, s.screen_h, "cub3D");
 		put_img(&s);
 		mlx_hook(s.win, 2, 0, check_key, &s);
 		mlx_loop(s.mlx);

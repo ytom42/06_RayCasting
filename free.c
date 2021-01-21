@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 11:57:38 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/19 13:45:39 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/01/21 22:44:08 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ void	end(t_all *s, int n)
 		write(2, "Not enough information\n", 23);
 	else if (n == 3)
 		write(2, "Player not found\n", 17);
-	s->screenWidth = 1;
+	s->screen_w = 1;
 	exit(0);
 }

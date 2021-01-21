@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 03:20:12 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/19 03:20:42 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/01/21 23:15:54 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,31 +16,31 @@ void	move_pos(t_all *s, int key)
 {
 	if (key == KEY_W)
 	{
-		if(s->map[(int)(s->posX + s->dirX * s->moveSpeed)][(int)(s->posY)] == 0)
-			s->posX += s->dirX * s->moveSpeed;
-		if(s->map[(int)(s->posX)][(int)(s->posY + s->dirY * s->moveSpeed)] == 0)
-			s->posY += s->dirY * s->moveSpeed;
+		if(s->map[(int)(s->pos_x + s->dir_x * s->movespeed)][(int)(s->pos_y)] == 0)
+			s->pos_x += s->dir_x * s->movespeed;
+		if(s->map[(int)(s->pos_x)][(int)(s->pos_y + s->dir_y * s->movespeed)] == 0)
+			s->pos_y += s->dir_y * s->movespeed;
 	}
 	else if (key == KEY_S)
 	{
-		if(s->map[(int)(s->posX - s->dirX * s->moveSpeed)][(int)(s->posY)] == 0)
-			s->posX -= s->dirX * s->moveSpeed;
-		if(s->map[(int)(s->posX)][(int)(s->posY - s->dirY * s->moveSpeed)] == 0)
-			s->posY -= s->dirY * s->moveSpeed;
+		if(s->map[(int)(s->pos_x - s->dir_x * s->movespeed)][(int)(s->pos_y)] == 0)
+			s->pos_x -= s->dir_x * s->movespeed;
+		if(s->map[(int)(s->pos_x)][(int)(s->pos_y - s->dir_y * s->movespeed)] == 0)
+			s->pos_y -= s->dir_y * s->movespeed;
 	}
 	else if (key == KEY_D)
 	{
-		if(s->map[(int)(s->posX + s->dirY * s->moveSpeed)][(int)(s->posY)] == 0)
-			s->posX += s->dirY * s->moveSpeed;
-		if(s->map[(int)(s->posX)][(int)(s->posY - s->dirX * s->moveSpeed)] == 0)
-			s->posY -= s->dirX * s->moveSpeed;
+		if(s->map[(int)(s->pos_x + s->dir_y * s->movespeed)][(int)(s->pos_y)] == 0)
+			s->pos_x += s->dir_y * s->movespeed;
+		if(s->map[(int)(s->pos_x)][(int)(s->pos_y - s->dir_x * s->movespeed)] == 0)
+			s->pos_y -= s->dir_x * s->movespeed;
 	}
 	else if (key == KEY_A)
 	{
-		if(s->map[(int)(s->posX - s->dirY * s->moveSpeed)][(int)(s->posY)] == 0)
-			s->posX -= s->dirY * s->moveSpeed;
-		if(s->map[(int)(s->posX)][(int)(s->posY + s->dirX * s->moveSpeed)] == 0)
-			s->posY += s->dirX * s->moveSpeed;
+		if(s->map[(int)(s->pos_x - s->dir_y * s->movespeed)][(int)(s->pos_y)] == 0)
+			s->pos_x -= s->dir_y * s->movespeed;
+		if(s->map[(int)(s->pos_x)][(int)(s->pos_y + s->dir_x * s->movespeed)] == 0)
+			s->pos_y += s->dir_x * s->movespeed;
 	}
 }
 
@@ -48,21 +48,21 @@ void	turn_RL(t_all *s, int key)
 {
 	if (key == RIGHT)
 	{
-		s->oldDirX = s->dirX;
-		s->dirX = s->dirX * cos(-(s->rotSpeed)) - s->dirY * sin(-(s->rotSpeed));
-		s->dirY = s->oldDirX * sin(-(s->rotSpeed)) + s->dirY * cos(-(s->rotSpeed));
-		s->oldPlaneX = s->planeX;
-		s->planeX = s->planeX * cos(-(s->rotSpeed)) - s->planeY * sin(-(s->rotSpeed));
-		s->planeY = s->oldPlaneX * sin(-(s->rotSpeed)) + s->planeY * cos(-(s->rotSpeed));
+		s->olddir_x = s->dir_x;
+		s->dir_x = s->dir_x * cos(-(s->rotspeed)) - s->dir_y * sin(-(s->rotspeed));
+		s->dir_y = s->olddir_x * sin(-(s->rotspeed)) + s->dir_y * cos(-(s->rotspeed));
+		s->oldplane_x = s->plane_x;
+		s->plane_x = s->plane_x * cos(-(s->rotspeed)) - s->plane_y * sin(-(s->rotspeed));
+		s->plane_y = s->oldplane_x * sin(-(s->rotspeed)) + s->plane_y * cos(-(s->rotspeed));
 	}
 	else if(key == LEFT)
 	{
-		s->oldDirX = s->dirX;
-		s->dirX = s->dirX * cos(s->rotSpeed) - s->dirY * sin(s->rotSpeed);
-		s->dirY = s->oldDirX * sin(s->rotSpeed) + s->dirY * cos(s->rotSpeed);
-		s->oldPlaneX = s->planeX;
-		s->planeX = s->planeX * cos(s->rotSpeed) - s->planeY * sin(s->rotSpeed);
-		s->planeY = s->oldPlaneX * sin(s->rotSpeed) + s->planeY * cos(s->rotSpeed);
+		s->olddir_x = s->dir_x;
+		s->dir_x = s->dir_x * cos(s->rotspeed) - s->dir_y * sin(s->rotspeed);
+		s->dir_y = s->olddir_x * sin(s->rotspeed) + s->dir_y * cos(s->rotspeed);
+		s->oldplane_x = s->plane_x;
+		s->plane_x = s->plane_x * cos(s->rotspeed) - s->plane_y * sin(s->rotspeed);
+		s->plane_y = s->oldplane_x * sin(s->rotspeed) + s->plane_y * cos(s->rotspeed);
 	}
 }
 

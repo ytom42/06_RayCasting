@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 11:35:12 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/19 13:38:40 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/01/21 22:41:42 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ void	check_map(t_all *s, int map_height)
 		}
 		i++;
 	}
-	h = (int)s->posX;
-	w = (int)s->posY;
-	printf("X->%f\nY->%f\n", s->posX, s->posY);
+	h = (int)s->pos_x;
+	w = (int)s->pos_y;
+	printf("X->%f\nY->%f\n", s->pos_x, s->pos_y);
 	printf("x->%d\ny->%d\n", h, w);
 	flood_fill(s, h, w);
 	// free s->fill_map

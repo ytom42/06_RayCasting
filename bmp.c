@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 21:40:56 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/20 22:29:43 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/01/21 22:44:56 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ void	bmp_data(t_all *s, int fd)
 	unsigned int	color;
 	unsigned char	buffer[4];
 
-	y = s->screenHeight - 1;
+	y = s->screen_h - 1;
 	while (y >= 0)
 	{
 		x = 0;
-		while (x < s->screenWidth)
+		while (x < s->screen_w)
 		{
 			// dst = (s->img.addr + (y * s->img.line_len + x * (s->img.bpp / 8)));
 			color = *(unsigned int*)(s->img.addr + (y * s->img.line_len + x * (s->img.bpp / 8)));
@@ -47,12 +47,12 @@ void	bmp_info(t_all *s, int fd)
 	while (n < 40)
 		buf[n++] = (unsigned char)(0);
 	buf[0] = (unsigned char)(40);
-	n = s->screenWidth;
+	n = s->screen_w;
 	buf[4] = (unsigned char)(n % 256);
 	buf[5] = (unsigned char)(n / 256 % 256);
 	buf[6] = (unsigned char)(n / 256 / 256 % 256);
 	buf[7] = (unsigned char)(n / 256 / 256 / 256);
-	n = s->screenHeight;
+	n = s->screen_h;
 	buf[8] = (unsigned char)(n % 256);
 	buf[9] = (unsigned char)(n / 256 % 256);
 	buf[10] = (unsigned char)(n / 256 / 256 % 256);
@@ -72,7 +72,7 @@ void	bmp_file(t_all *s, int fd)
 		buf[n++] = (unsigned char)(0);
 	buf[0] = (unsigned int)('B');
 	buf[1] = (unsigned int)('M');
-	n = s->screenWidth * s->screenHeight * 4 + 54;
+	n = s->screen_w * s->screen_h * 4 + 54;
 	buf[2] = (unsigned char)(n % 256);
 	buf[3] = (unsigned char)(n / 256 % 256);
 	buf[4] = (unsigned char)(n / 256 / 256 % 256);

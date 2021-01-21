@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 01:00:45 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/19 13:42:11 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/01/21 23:07:12 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,43 +27,43 @@ int		check_line(t_all *s, char *line, int index)
 			s->sprite_len += 1;
 		else if (line[i] == 'N')
 		{
-			s->posX = index + 0.5;
-			s->posY = i + 0.5;
-			s->dirX = -1;
-			s->dirY = 0;
-			s->planeX = 0;
-			s->planeY = 0.66;
-			s->flag.POS = 1;
+			s->pos_x = index + 0.5;
+			s->pos_y = i + 0.5;
+			s->dir_x = -1;
+			s->dir_y = 0;
+			s->plane_x = 0;
+			s->plane_y = 0.66;
+			s->flag.pos = 1;
 		}
 		else if (line[i] == 'S')
 		{
-			s->posX = index + 0.5;
-			s->posY = i + 0.5;
-			s->dirX = 1;
-			s->dirY = 0;
-			s->planeX = 0;
-			s->planeY = -0.66;
-			s->flag.POS = 1;
+			s->pos_x = index + 0.5;
+			s->pos_y = i + 0.5;
+			s->dir_x = 1;
+			s->dir_y = 0;
+			s->plane_x = 0;
+			s->plane_y = -0.66;
+			s->flag.pos = 1;
 		}
 		else if (line[i] == 'W')
 		{
-			s->posX = index + 0.5;
-			s->posY = i + 0.5;
-			s->dirX = 0;
-			s->dirY = -1;
-			s->planeX = -0.66;
-			s->planeY = 0;
-			s->flag.POS = 1;
+			s->pos_x = index + 0.5;
+			s->pos_y = i + 0.5;
+			s->dir_x = 0;
+			s->dir_y = -1;
+			s->plane_x = -0.66;
+			s->plane_y = 0;
+			s->flag.pos = 1;
 		}
 		else if (line[i] == 'E')
 		{
-			s->posX = index + 0.5;
-			s->posY = i + 0.5;
-			s->dirX = 0;
-			s->dirY = 1;
-			s->planeX = 0.66;
-			s->planeY = 0;
-			s->flag.POS = 1;
+			s->pos_x = index + 0.5;
+			s->pos_y = i + 0.5;
+			s->dir_x = 0;
+			s->dir_y = 1;
+			s->plane_x = 0.66;
+			s->plane_y = 0;
+			s->flag.pos = 1;
 		}
 		i++;
 	}
@@ -126,19 +126,19 @@ void	first_read(t_all *s, int *before_line, int *map_height)
 	close(fd);
 	if (!(check_flag(s)))
 		end(s, 2);
-	if (s->flag.POS == 0)
+	if (s->flag.pos == 0)
 		end(s, 3);
-	printf("\tR  = %d\n", s->flag.R);
-	printf("\tNO = %d\n", s->flag.NO);
-	printf("\tSO = %d\n", s->flag.SO);
-	printf("\tWE = %d\n", s->flag.WE);
-	printf("\tEA = %d\n", s->flag.EA);
-	printf("\tS  = %d\n", s->flag.S);
-	printf("\tF  = %d\n", s->flag.F);
-	printf("\tC  = %d\n", s->flag.C);
-	printf("\tPOS= %d\n", s->flag.POS);
-	printf("\ts->posX -> %f\n", s->posX);
-	printf("\ts->posY -> %f\n", s->posY);
+	printf("\tR  = %d\n", s->flag.r);
+	printf("\tNO = %d\n", s->flag.no);
+	printf("\tSO = %d\n", s->flag.so);
+	printf("\tWE = %d\n", s->flag.we);
+	printf("\tEA = %d\n", s->flag.ea);
+	printf("\tS  = %d\n", s->flag.s);
+	printf("\tF  = %d\n", s->flag.f);
+	printf("\tC  = %d\n", s->flag.c);
+	printf("\tPOS= %d\n", s->flag.pos);
+	printf("\ts->pos_x -> %f\n", s->pos_x);
+	printf("\ts->pos_y -> %f\n", s->pos_y);
 	printf("\ts->map_height -> %d\n", s->map_height);
 	printf("\ts->map_width  -> %d\n", s->map_width);
 	printf("\ts->sprite_len -> %d\n", s->sprite_len);
