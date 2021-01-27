@@ -6,7 +6,7 @@
 #    By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/19 23:21:23 by ytomiyos          #+#    #+#              #
-#    Updated: 2021/01/19 11:58:06 by ytomiyos         ###   ########.fr        #
+#    Updated: 2021/01/26 16:36:27 by ytomiyos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,17 +20,19 @@ SRCS	=	cub3d.c \
 			ft_gnl.c \
 			tools.c \
 			tools2.c \
-			init.c \
-			map.c \
+			init_all.c \
+			init_map.c \
+			init_cubinfo.c \
 			check_map.c \
-			textures.c \
-			bmp.c \
-			sprite.c \
+			sort_sprites.c \
 			first_read.c \
 			second_read.c \
+			create_img.c \
+			push_key.c \
 			put_wall.c \
 			put_sprite.c \
-			check_key.c \
+			file_to_image.c \
+			create_bmp.c \
 			free.c \
 			error.c
 
@@ -39,7 +41,7 @@ OBJS	=	$(SRCS:.c=.o)
 all		:	$(NAME)
 
 $(NAME)	:	$(OBJS)
-		$(CC) $(CFLAGS) -L minilibx_opengl/ -lmlx -framework OpenGL -framework AppKit -o $(NAME) $(OBJS)
+		$(CC) $(CFLAGS) -L minilibx_opengl/ -l mlx -framework OpenGL -framework AppKit -o $(NAME) $(OBJS)
 		./$(NAME)
 
 clean	:

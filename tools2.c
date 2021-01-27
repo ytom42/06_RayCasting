@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 20:23:37 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/21 22:58:33 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/01/25 15:52:18 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,64 @@ void	my_mlx_pixel_put3(t_all *s, int x, int y, t_tex *tex)
 	if (color == 0)
 		return ;
 	*(unsigned int*)dst = color;
+}
+
+int		ft_ismap(char *line)
+{
+	int		i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] == '0')
+			return (1);
+		else if (line[i] == '1')
+			return (1);
+		else if (line[i] == '2')
+			return (1);
+		else if (line[i] == 'N')
+			return (1);
+		else if (line[i] == 'S')
+			return (1);
+		else if (line[i] == 'E')
+			return (1);
+		else if (line[i] == 'W')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int		ft_allspace(char *line)
+{
+	int		i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] != ' ')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int		check_name(char *name)
+{
+	int		i;
+	int		len;
+	char	*save;
+
+	i = 0;
+	save = "--save";
+	len = ft_strlen(name);
+	if (len != 6)
+		return (0);
+	while (name[i])
+	{
+		if (name[i] != save[i])
+			return (0);
+		i++;
+	}
+	return (1);
 }

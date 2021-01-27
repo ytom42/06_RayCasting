@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 01:02:33 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/19 01:32:24 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/01/23 14:30:54 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int		building(t_all *s, char *line, int index, int *sprite_i)
 		}
 		else if (line[i] == 'N' || line[i] == 'S' || line[i] == 'E' || line[i] == 'W')
 			s->map[index][i] = 0;
+		else
+			end(s, 4);
 		i++;
 	}
 	return (i);
@@ -67,7 +69,7 @@ void	second_read(t_all *s, int *before_line)
 	i = 0;
 	fd = open(CUB, O_RDONLY);
 	index = 0;
-	while (*before_line >= 0)
+	while (*before_line > 0)
 	{
 		gnl(fd, &line);
 		*before_line -= 1;
@@ -104,5 +106,5 @@ void	second_read(t_all *s, int *before_line)
 		x++;
 	}
 	printf("\t\t\x1b[32m---------------------\n\x1b[0m");
-	printf("\t\x1b[31mdone!! second_read\n\x1b[0m");
+	printf("\t\x1b[32mdone!! second_read\n\x1b[0m");
 }

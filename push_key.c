@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_key.c                                        :+:      :+:    :+:   */
+/*   push_key.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 03:20:12 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/21 23:15:54 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/01/25 15:54:10 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	turn_RL(t_all *s, int key)
 	}
 }
 
-int	check_key(int keycode, t_all *s)
+int	push_key(int keycode, t_all *s)
 {
 	if (keycode == KEY_ESC)
 	{
@@ -85,6 +85,6 @@ int	check_key(int keycode, t_all *s)
 		turn_RL(s, RIGHT);
 	else if(keycode == LEFT)
 		turn_RL(s, LEFT);
-	put_img(s);
+	create_img(s);
 	return (0);
 }

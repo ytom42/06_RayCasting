@@ -6,22 +6,48 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 11:57:38 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/21 22:44:08 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/01/26 14:43:03 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	end(t_all *s, int n)
+void	free_map(t_all *s)
 {
-	printf("-----------\n---error---\n-----------\n");
-	// free s->fill_map
-	if (n == 1)
-		write(2, "Map is not closed\n", 18);
-	else if (n == 2)
-		write(2, "Not enough information\n", 23);
-	else if (n == 3)
-		write(2, "Player not found\n", 17);
-	s->screen_w = 1;
-	exit(0);
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	while (i < s->screen_h)
+	{
+		free(s->map[i]);
+		i++;
+	}
+	free(s->map);
+}
+
+void	free_fillmap(t_all *s)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	while (i < s->screen_h)
+	{
+		free(s->fill_map[i]);
+		i++;
+	}
+	free(s->fill_map);
+}
+
+void	all_free(t_all *s)
+{
+	s->screen_w = 0;
+	// free(s->sprites);
+	// free(s->spriteorder);
+	// free(s->spritedistance);
+	// free_map(s);
+	// free_fillmap(s);
 }

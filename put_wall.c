@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 03:16:44 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/21 23:14:48 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/01/25 18:30:49 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,13 +108,13 @@ void	put_wall_pixelput(t_all *s, int x)
 			s->tex_y = (int)s->texpos & (TEX_HEIGHT - 1);
 			s->texpos += s->step;
 			if (s->side == 1 && s->raydir_y >= 0)
-				my_mlx_pixel_put2(s, x, y, &s->texs.tex_n);
-			else if (s->side == 1)
-				my_mlx_pixel_put2(s, x, y, &s->texs.tex_s);
-			else if (s->raydir_x >= 0)
-				my_mlx_pixel_put2(s, x, y, &s->texs.tex_e);
-			else
 				my_mlx_pixel_put2(s, x, y, &s->texs.tex_w);
+			else if (s->side == 1)
+				my_mlx_pixel_put2(s, x, y, &s->texs.tex_e);
+			else if (s->raydir_x >= 0)
+				my_mlx_pixel_put2(s, x, y, &s->texs.tex_s);
+			else
+				my_mlx_pixel_put2(s, x, y, &s->texs.tex_n);
 		}
 		else if (y < (s->screen_h / 2))
 			my_mlx_pixel_put(s, x, y, s->ceiling_color);

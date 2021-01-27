@@ -6,38 +6,16 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 11:30:01 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/22 00:14:40 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/01/27 10:42:49 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int		put_img(t_all *s)
+void	test(t_all *s)
 {
-	put_wall(s);
-	put_sprite(s);
-	mlx_put_image_to_window(s->mlx, s->win, s->img.img, 0, 0);
-	return (0);
-}
-
-int		check_name(char *name)
-{
-	int		i;
-	int		len;
-	char	*save;
-
-	i = 0;
-	save = "--save";
-	len = ft_strlen(name);
-	if (len != 6)
-		return (0);
-	while (name[i])
-	{
-		if (name[i] != save[i])
-			return (0);
-		i++;
-	}
-	return (1);
+	free(s->mlx);
+	end(s, 100);
 }
 
 int		main(int ac, char **av)
@@ -45,18 +23,22 @@ int		main(int ac, char **av)
 	t_all	s;
 
 	init_all(&s);
-	if (ac == 2 && check_name(av[1]))
+	if (ac == 1)
+	{
+		if (!(s.win = mlx_new_window(s.mlx, s.screen_w, s.screen_h, "cub3D")))
+			end(&s, 17);
+		create_img(&s);
+		mlx_hook(s.win, 2, 0, push_key, &s);
+		mlx_hook(s.win, 17, 0, close_window, &s);
+		mlx_loop(s.mlx);
+	}
+	else if (ac == 2 && check_name(av[1]))
 	{
 		put_wall(&s);
 		put_sprite(&s);
 		create_bmp(&s);
 	}
 	else
-	{
-		s.win = mlx_new_window(s.mlx, s.screen_w, s.screen_h, "cub3D");
-		put_img(&s);
-		mlx_hook(s.win, 2, 0, check_key, &s);
-		mlx_loop(s.mlx);
-	}
+		end(&s, 16);
 	return (0);
 }

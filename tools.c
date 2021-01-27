@@ -6,18 +6,31 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 11:29:59 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/19 03:23:27 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/01/26 22:51:54 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-unsigned long create_rgb(int r, int g, int b)
+int				ft_isdigit(char c)
 {
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
+}
+
+unsigned long	create_rgb(t_all *s, int r, int g, int b)
+{
+	if (r < 0 || r > 255)
+		end(s, 9);
+	else if (g < 0 || g > 255)
+		end(s, 9);
+	else if (b < 0 || b > 255)
+		end(s, 9);
 	return (r * 256 * 256 + g * 256 + b);
 }
 
-int ft_strlen(char *s)
+int				ft_strlen(char *s)
 {
 	int i;
 
@@ -29,7 +42,7 @@ int ft_strlen(char *s)
 	return (i);
 }
 
-void ft_strlcpy(char *dst, char *src, int size)
+void			ft_strlcpy(char *dst, char *src, int size)
 {
 	int i;
 
@@ -43,7 +56,7 @@ void ft_strlcpy(char *dst, char *src, int size)
 	dst[i] = '\0';
 }
 
-char *ft_strdup(char *s)
+char			*ft_strdup(char *s)
 {
 	int len;
 	char *ptr;
@@ -54,7 +67,7 @@ char *ft_strdup(char *s)
 	return (ptr);
 }
 
-char *ft_strjoin(char *s1, char *s2)
+char			*ft_strjoin(char *s1, char *s2)
 {
 	int s1_len;
 	int s2_len;
@@ -68,7 +81,7 @@ char *ft_strjoin(char *s1, char *s2)
 	return (ptr);
 }
 
-char *ft_hextoa(unsigned int  hex)
+char			*ft_hextoa(unsigned int  hex)
 {
 	int len;
 	char *str;
@@ -92,7 +105,22 @@ char *ft_hextoa(unsigned int  hex)
 	return (ptr);
 }
 
-char *ft_itoa(int n)
+int		ft_atoi_new(char *str, int *index)
+{
+	int		n;
+
+	n = 0;
+	while (str[*index] >= 48 && str[*index] <= 57)
+	{
+		if (n > 255)
+			return (-1);
+		n = n * 10 + (str[*index] - 48);
+		*index += 1;
+	}
+	return (n);
+}
+
+char			*ft_itoa(int n)
 {
 	int minus;
 	int len;

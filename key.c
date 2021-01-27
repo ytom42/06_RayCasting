@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 22:20:44 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/14 22:21:59 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/01/25 16:52:21 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	turn_RL(t_all *s, int key)
 	}
 }
 
-int	check_key(int keycode, t_all *s)
+int	push_key(int keycode, t_all *s)
 {
 	if (keycode == KEY_ESC)
 	{
