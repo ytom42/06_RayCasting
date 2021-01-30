@@ -6,48 +6,50 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 11:57:38 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/26 14:43:03 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/01/30 17:33:31 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	free_map(t_all *s)
+void	free_map(t_all *s, int n)
 {
 	int		i;
-	int		j;
 
 	i = 0;
-	j = 0;
-	while (i < s->screen_h)
+	if (n == -1)
+		n = s->map_height;
+	printf("in_freemap.\nn = %d\n", n);
+	while (i < n)
 	{
+		printf("map[%d]\n", i);
 		free(s->map[i]);
 		i++;
 	}
 	free(s->map);
 }
 
-void	free_fillmap(t_all *s)
+void	free_fillmap(t_all *s, int n)
 {
 	int		i;
-	int		j;
 
+	printf("in_free_fillmap\n");
 	i = 0;
-	j = 0;
-	while (i < s->screen_h)
+	if (n == -1)
+		n = s->map_height;
+	while (i < n)
 	{
+		printf("fill_map[%d]\n", i);
 		free(s->fill_map[i]);
 		i++;
 	}
 	free(s->fill_map);
 }
 
-void	all_free(t_all *s)
+void	all_free(t_all *s, int n)
 {
-	s->screen_w = 0;
-	// free(s->sprites);
-	// free(s->spriteorder);
-	// free(s->spritedistance);
-	// free_map(s);
-	// free_fillmap(s);
+	if (s->map != NULL)
+		free_map(s, n);
+	if (s->fill_map != NULL)
+		free_fillmap(s, n);
 }

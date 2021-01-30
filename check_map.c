@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 11:35:12 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/23 13:00:11 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/01/30 09:26:10 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ void	flood_fill(t_all *s, int h, int w)
 	if (s->fill_map[h][w] == 1)
 		return ;
 	if ((h + 1) == s->map_height || (w + 1) == s->map_width)
-		end(s, 1);
+		end(s, 1, -1);
 	else if ((h - 1) < 0 || (w - 1) < 0)
-		end(s, 1);
+		end(s, 1, -1);
 	if (s->fill_map[h + 1][w] == -1 || s->fill_map[h][w + 1] == -1)
-		end(s, 1);
+		end(s, 1, -1);
 	else if (s->fill_map[h - 1][w] == -1 || s->fill_map[h][w - 1] == -1)
-		end(s, 1);
+		end(s, 1, -1);
 	s->fill_map[h][w] = 1;
 	flood_fill(s, (h + 1), w);
 	flood_fill(s, h, (w + 1));
@@ -31,7 +31,7 @@ void	flood_fill(t_all *s, int h, int w)
 	flood_fill(s, h, (w - 1));
 }
 
-void	check_map(t_all *s, int map_height)
+void	check_map(t_all *s)
 {
 	int i;
 	int j;
@@ -39,7 +39,7 @@ void	check_map(t_all *s, int map_height)
 	int w;
 
 	i = 0;
-	s->fill_map = (int**)malloc(sizeof(int*) * (map_height + 1));
+	s->fill_map = (int**)malloc(sizeof(int*) * (s->map_height + 1));
 	while (i < s->map_height)
 	{
 		j = 0;
@@ -54,6 +54,5 @@ void	check_map(t_all *s, int map_height)
 	h = (int)s->pos_x;
 	w = (int)s->pos_y;
 	flood_fill(s, h, w);
-	// free s->fill_map
 	printf("\x1b[32mdone!! check_map\n\x1b[0m");
 }

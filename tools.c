@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 11:29:59 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/26 22:51:54 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/01/30 09:27:17 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ int				ft_isdigit(char c)
 unsigned long	create_rgb(t_all *s, int r, int g, int b)
 {
 	if (r < 0 || r > 255)
-		end(s, 9);
+		end(s, 9, -1);
 	else if (g < 0 || g > 255)
-		end(s, 9);
+		end(s, 9, -1);
 	else if (b < 0 || b > 255)
-		end(s, 9);
+		end(s, 9, -1);
 	return (r * 256 * 256 + g * 256 + b);
 }
 

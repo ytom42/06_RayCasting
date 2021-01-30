@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 20:25:07 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/27 21:37:14 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/01/30 09:29:00 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,29 @@ void	init_var(t_all *s)
 	s->map_height = 0;
 	s->map_width = 0;
 	s->sprite_len = 0;
+
+	s->map_before_line = 0;
+}
+
+void	init_ptr(t_all *s)
+{
+	s->texs.tex_n.img = NULL;
+	s->texs.tex_s.img = NULL;
+	s->texs.tex_e.img = NULL;
+	s->texs.tex_w.img = NULL;
+	s->texs.tex_sp.img = NULL;
+	s->sprites = NULL;
+	s->spriteorder = NULL;
+	s->spritedistance = NULL;
 }
 
 void	init_window(t_all *s)
 {
 	if (!(s->img.img = mlx_new_image(s->mlx, s->screen_w, s->screen_h)))
-		end(s, 17);
+		end(s, 17, -1);
 	s->img.addr = mlx_get_data_addr(s->img.img, &s->img.bpp, &s->img.line_len, &s->img.endian);
 	if (!(s->buf.z_buffer = (double*)malloc(sizeof(double) * (s->screen_w + 1))))
-		end(s, 17);
+		end(s, 17, -1);
 }
 
 void	init_texaddr(t_all *s)
@@ -59,9 +73,10 @@ void	init_all(t_all *s)
 {
 	printf("\x1b[32mSTART [init_all]----------------------------------\n\x1b[0m");
 	if (!(s->mlx = mlx_init()))
-		end(s, 17);
+		end(s, 17, 0);
 	init_flag(s);
 	init_var(s);
+	init_ptr(s);
 	init_map(s);
 	init_window(s);
 	init_texaddr(s);

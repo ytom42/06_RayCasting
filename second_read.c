@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 01:02:33 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/23 14:30:54 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/01/30 17:43:37 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		building(t_all *s, char *line, int index, int *sprite_i)
 		else if (line[i] == 'N' || line[i] == 'S' || line[i] == 'E' || line[i] == 'W')
 			s->map[index][i] = 0;
 		else
-			end(s, 4);
+			end(s, 4, -1);
 		i++;
 	}
 	return (i);
@@ -45,11 +45,8 @@ int		build_map(t_all *s, char *line, int index)
 	int			len;
 	static int	sprite_i;
 
-	// printf("--start-- build_map\n");
 	i = 0;
 	len = ft_strlen(line);
-	if (len < 3)
-		return (1);
 	i = building(s, line, index, &sprite_i);
 	while (i < s->map_width)
 	{
@@ -59,52 +56,37 @@ int		build_map(t_all *s, char *line, int index)
 	return (0);
 }
 
-void	second_read(t_all *s, int *before_line)
+void	second_read(t_all *s)
 {
 	int		i;
 	int		fd;
-	int		index;
 	char	*line;
+	char	*tmp;
 
 	i = 0;
-	fd = open(CUB, O_RDONLY);
-	index = 0;
-	while (*before_line > 0)
+	if ((fd = open(CUB, O_RDONLY)) == -1)
+		end(s, 18, -1);
+	while (s->map_before_line > 0)
 	{
 		gnl(fd, &line);
-		*before_line -= 1;
+		tmp = line;
+		free(tmp);
+		s->map_before_line -= 1;
 	}
-	s->map = (int**)malloc(sizeof(int*) * (s->map_height + 1));
+	if (!(s->map = (int**)malloc(sizeof(int*) * (s->map_height + 1))))
+		end(s, 17, -1);
 	while (i < s->map_height)
 	{
-		s->map[i] = ((int*)malloc(sizeof(int) * (s->map_width + 1)));
-		i++;
+		if (!(s->map[i] = ((int*)malloc(sizeof(int) * (s->map_width + 1)))))
+			end(s, 17, i);
 		gnl(fd, &line);
-		if (ft_strlen(line) < 3)
+		if (build_map(s, line, i))
 			break ;
-		if (build_map(s, line, index))
-			break ;
+		tmp = line;
+		free(tmp);
 		printf("\tbuild -> %s\n", line);
-		index++;
+		i++;
 	}
 	close(fd);
-	
-	int x = 0;
-	int y = 0;
-	printf("\t\t\x1b[32m---------------------\n\x1b[0m");
-	while (x < s->map_height)
-	{
-		y = 0;
-		printf("\t\t\x1b[32m|\x1b[0m");
-		while (y < s->map_width)
-		{
-			printf("%d", s->map[x][y]);
-			y++;
-		}
-		printf("\x1b[32m|\x1b[0m");
-		printf("\n");
-		x++;
-	}
-	printf("\t\t\x1b[32m---------------------\n\x1b[0m");
 	printf("\t\x1b[32mdone!! second_read\n\x1b[0m");
 }

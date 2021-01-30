@@ -6,16 +6,16 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 22:18:46 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/27 10:42:46 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/01/30 09:23:23 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	end(t_all *s, int n)
+void	end(t_all *s, int n, int free_n)
 {
 	printf("\x1b[31m-----------\n---error---\n-----------\n\x1b[0m");
-	all_free(s);
+	all_free(s, free_n);
 	if (n == 1)
 		write(2, "Map is not closed\n", 18);
 	else if (n == 2)
@@ -50,8 +50,10 @@ void	end(t_all *s, int n)
 		write(2, "The only possible option is \"--save\"\n", 37);
 	else if (n == 17)
 		write(2, "malloc faild\n", 13);
-	else if (n == 100)
-		write(2, "test\n", 5);
+	else if (n == 18)
+		write(2, "Failed to open file\n", 20);
+	printf("\x1b[31m--------------\n-leaks cub3D-\n-------------\n\x1b[0m");
+	system("leaks cub3D");
 	exit(0);
 }
 

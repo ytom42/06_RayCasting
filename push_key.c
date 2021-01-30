@@ -71,6 +71,7 @@ int	push_key(int keycode, t_all *s)
 	if (keycode == KEY_ESC)
 	{
 		mlx_destroy_window(s->mlx, s->win);
+		end(s, 100, -1);
 		exit(0);
 	}
 	else if (keycode == KEY_W)

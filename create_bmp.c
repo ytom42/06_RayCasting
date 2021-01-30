@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bmp.c                                              :+:      :+:    :+:   */
+/*   create_bmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 21:40:56 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/21 22:44:56 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/01/30 09:29:08 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ void	create_bmp(t_all *s)
 	int		fd;
 
 	fd = open("window.bmp", O_CREAT | O_WRONLY | O_TRUNC, S_IRWXU);
+	if (fd == -1)
+		end(s, 18, -1);
 	bmp_file(s, fd);
 	bmp_info(s, fd);
 	bmp_data(s, fd);
