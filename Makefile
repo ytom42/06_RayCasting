@@ -6,7 +6,7 @@
 #    By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/19 23:21:23 by ytomiyos          #+#    #+#              #
-#    Updated: 2021/01/26 16:36:27 by ytomiyos         ###   ########.fr        #
+#    Updated: 2021/01/31 17:37:18 by ytomiyos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,12 +18,15 @@ NAME	=	cub3D
 
 SRCS	=	cub3d.c \
 			ft_gnl.c \
-			tools.c \
+			tools1.c \
 			tools2.c \
+			tools3.c \
+			tools4.c \
 			init_all.c \
 			init_map.c \
 			init_cubinfo.c \
 			check_map.c \
+			check_line.c \
 			sort_sprites.c \
 			first_read.c \
 			second_read.c \
@@ -42,7 +45,6 @@ all		:	$(NAME)
 
 $(NAME)	:	$(OBJS)
 		$(CC) $(CFLAGS) -L minilibx_opengl/ -l mlx -framework OpenGL -framework AppKit -o $(NAME) $(OBJS)
-		./$(NAME)
 
 clean	:
 			rm -f *.o

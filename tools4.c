@@ -1,33 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_map.c                                         :+:      :+:    :+:   */
+/*   tools4.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/19 10:11:09 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/30 18:53:12 by ytomiyos         ###   ########.fr       */
+/*   Created: 2021/01/30 19:31:58 by ytomiyos          #+#    #+#             */
+/*   Updated: 2021/01/30 19:33:05 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	init_sprite(t_all *s)
+char	*skip_space(char *line, int *i)
 {
-	if (!(s->sprites = (t_sprite*)malloc(sizeof(t_sprite) * \
-						(s->sprite_len + 1))))
-		end(s, 17, -1);
-	if (!(s->spriteorder = (int*)malloc(sizeof(int) * (s->sprite_len + 1))))
-		end(s, 17, -1);
-	if (!(s->spritedistance = (double*)malloc(sizeof(double) * \
-						(s->sprite_len + 1))))
-		end(s, 17, -1);
+	while (line[*i])
+	{
+		if (line[*i] != ' ')
+			return (&line[*i]);
+		*i += 1;
+	}
+	return (NULL);
 }
 
-void	init_map(t_all *s)
+int		check_flag(t_all *s)
 {
-	first_read(s);
-	init_sprite(s);
-	second_read(s);
-	check_map(s);
+	if (s->flag.f && s->flag.c && s->flag.r && s->flag.no && \
+		s->flag.so && s->flag.we && s->flag.ea && s->flag.s)
+		return (1);
+	return (0);
+}
+
+int		ft_allspace(char *line)
+{
+	int		i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] != ' ')
+			return (0);
+		i++;
+	}
+	return (1);
 }

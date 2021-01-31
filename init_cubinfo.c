@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 10:09:08 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/30 09:27:42 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/01/31 17:38:35 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,25 +31,6 @@ void	init_resolution(t_all *s, char *line)
 	if (!(ft_allspace(&line[i])))
 		end(s, 12, -1);
 	s->flag.r = 1;
-}
-
-void	check_filename(t_all *s, char *line)
-{
-	int		i;
-
-	i = 0;
-	while (line[i])
-	{
-		if (line[i] == ' ')
-			break ;
-		i++;
-	}
-	while (line[i])
-	{
-		if (line[i] == ' ')
-			end(s, 10, -1);
-		i++;
-	}
 }
 
 void	init_wall(t_all *s, char *line, int n)
@@ -78,51 +59,34 @@ void	init_tex(t_all *s, char *line)
 		end(s, 6, -1);
 	skip_space(line, &i);
 	check_filename(s, &line[i]);
-	s->texs.tex_sp.img = mlx_xpm_file_to_image(s->mlx, &line[i], &s->texs.tex_sp.width, &s->texs.tex_sp.height);
+	s->texs.tex_sp.img = mlx_xpm_file_to_image(s->mlx, \
+		&line[i], &s->texs.tex_sp.width, &s->texs.tex_sp.height);
 	if (s->texs.tex_sp.img == NULL)
 		end(s, 8, -1);
+	if (s->texs.tex_sp.width != 64 || s->texs.tex_sp.height != 64)
+		end(s, 19, -1);
 	s->flag.s = 1;
 }
 
 void	init_floor_ceiling(t_all *s, char *line, int n)
 {
 	int		i;
-	int		r;
-	int		g;
-	int		b;
 
 	i = 1;
-	r = 0;
-	g = 0;
-	b = 0;
 	skip_space(line, &i);
-	r = ft_atoi_new(line, &i);
-	if (r < 0)
-		end(s, 9, -1);
-	if (line[i++] != ',')
-		end(s, 13, -1);
-	if (!(ft_isdigit(line[i])))
-		end(s, 14, -1);
-	g = ft_atoi_new(line, &i);
-	if (line[i++] != ',')
-		end(s, 13, -1);
-	if (!(ft_isdigit(line[i])))
-		end(s, 14, -1);
-	b = ft_atoi_new(line, &i);
-	if (!(ft_allspace(&line[i])))
-		end(s, 5, -1);
+	get_rgb(s, line, &i);
 	if (n == 0)
 	{
 		if (s->flag.f == 1)
 			end(s, 6, -1);
-		s->floor_color = create_rgb(s, r, g, b);
+		s->floor_color = create_rgb(s, s->r, s->g, s->b);
 		s->flag.f = 1;
 	}
 	else if (n == 1)
 	{
 		if (s->flag.c == 1)
 			end(s, 6, -1);
-		s->ceiling_color = create_rgb(s, r, g, b);
+		s->ceiling_color = create_rgb(s, s->r, s->g, s->b);
 		s->flag.c = 1;
 	}
 }

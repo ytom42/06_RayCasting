@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 11:30:10 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/29 08:29:47 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/01/31 16:42:14 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,6 @@
 
 # include "minilibx_opengl/mlx.h"
 
-# define X_EVENT_KEY_PRESS	2
-# define X_EVENT_KEY_EXIT	17
-
 # define KEY_ESC			53
 # define KEY_W				13
 # define KEY_A				0
@@ -32,16 +29,6 @@
 # define KEY_D				2
 # define LEFT				123
 # define RIGHT				124
-
-# define NONE				0xFF000000
-# define WHITE				0x00FFFFFF
-# define BLACK				0x00000000
-# define RED				0x00FF0000
-# define GREEN				0x0000FF00
-# define BLUE				0x000000FF
-# define MAGENTA			0x00FF00FF
-# define YELLOW				0x00FFFF00
-# define CYAN				0x0000FFFF
 
 # define TEX_WIDTH			64
 # define TEX_HEIGHT			64
@@ -75,7 +62,7 @@ typedef struct		s_flag
 
 typedef struct		s_buf
 {
-	double			*z_buffer;
+	double			*z_buf;
 }					t_buf;
 
 typedef struct		s_img
@@ -125,11 +112,11 @@ typedef struct		s_all
 	void			*win;
 	t_img			img;
 
-	int				sprite_len;
+	t_sp			sp;
 	t_sprite		*sprites;
 	int				*spriteorder;
 	double			*spritedistance;
-	t_sp			sp;
+	int				sprite_len;
 
 	int				map_width;
 	int				map_height;
@@ -185,6 +172,9 @@ typedef struct		s_all
 	double			texpos;
 
 	int				map_before_line;
+	int				r;
+	int				g;
+	int				b;
 }					t_all;
 
 void				init_all(t_all *s);
@@ -203,22 +193,19 @@ unsigned long		create_rgb(t_all *s, int r, int g, int b);
 int					gnl(int fd, char **line);
 char				*skip_space(char *line, int *i);
 int					check_flag(t_all *s);
-int					check_line(t_all *s, char *line, int index);
+void				check_line(t_all *s, char *line, int index);
 void				check_map(t_all *s);
 int					check_name(char *name);
 void				my_mlx_pixel_put(t_all *s, int x, int y, int color);
 void				my_mlx_pixel_put2(t_all *s, int x, int y, t_tex *tex);
 void				my_mlx_pixel_put3(t_all *s, int x, int y, t_tex *tex);
 void				init_resolution(t_all *s, char *line);
-int					build_map(t_all *s, char *line, int index);
 void				test(t_all *s);
 int					ft_strlen(char *s);
 void				ft_strlcpy(char *dst, char *src, int size);
 char				*ft_strdup(char *s);
 char				*ft_strjoin(char *s1, char *s2);
 int					ft_atoi_new(char *str, int *index);
-char				*ft_itoa(int n);
-char				*ft_hextoa(unsigned int hex);
 int					ft_isdigit(char c);
 int					ft_ismap(char *line);
 int					ft_allspace(char *line);
@@ -231,15 +218,18 @@ void				put_sprite(t_all *s);
 void				first_read(t_all *s);
 void				second_read(t_all *s);
 
-void 				north_tex_to_img(t_all *s, char *line);
-void 				south_tex_to_img(t_all *s, char *line);
-void 				east_tex_to_img(t_all *s, char *line);
-void 				west_tex_to_img(t_all *s, char *line);
+void				north_tex_to_img(t_all *s, char *line);
+void				south_tex_to_img(t_all *s, char *line);
+void				east_tex_to_img(t_all *s, char *line);
+void				west_tex_to_img(t_all *s, char *line);
 
 void				create_bmp(t_all *s);
 void				bmp_file(t_all *s, int fd);
 void				bmp_info(t_all *s, int fd);
 void				bmp_data(t_all *s, int fd);
+
+void				get_rgb(t_all *s, char *line, int *i);
+void				check_filename(t_all *s, char *line);
 
 void				all_free(t_all *s, int n);
 void				end(t_all *s, int n, int free_n);

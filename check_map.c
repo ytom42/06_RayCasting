@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 11:35:12 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/30 09:26:10 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/01/30 17:51:22 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,4 @@ void	check_map(t_all *s)
 	h = (int)s->pos_x;
 	w = (int)s->pos_y;
 	flood_fill(s, h, w);
-	printf("\x1b[32mdone!! check_map\n\x1b[0m");
 }

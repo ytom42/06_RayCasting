@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 03:19:04 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/21 22:57:24 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/01/30 18:04:53 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	put_sprite_pixelput(t_all *s)
 			* TEX_WIDTH / s->sp.sprite_w) / 256;
 		if (s->sp.transform_y > 0 && s->sp.stripe > 0 && \
 			s->sp.stripe < s->screen_w && \
-			s->sp.transform_y < s->buf.z_buffer[s->sp.stripe])
+			s->sp.transform_y < s->buf.z_buf[s->sp.stripe])
 		{
 			y = s->sp.drawstart_y;
 			while (y < s->sp.drawend_y)

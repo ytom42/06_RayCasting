@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 03:16:44 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/25 18:30:49 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/01/30 18:57:33 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,11 @@ void	put_wall_2(t_all *s)
 			s->hit = 1;
 	}
 	if (s->side == 0)
-		s->perpwalldist = (s->map_x - s->pos_x + (1 - s->step_x) / 2) / s->raydir_x;
+		s->perpwalldist = (s->map_x - s->pos_x + \
+		(1 - s->step_x) / 2) / s->raydir_x;
 	else
-		s->perpwalldist = (s->map_y - s->pos_y + (1 - s->step_y) / 2) / s->raydir_y;
+		s->perpwalldist = (s->map_y - s->pos_y + \
+		(1 - s->step_y) / 2) / s->raydir_y;
 }
 
 void	put_wall_3(t_all *s)
@@ -82,18 +84,6 @@ void	put_wall_3(t_all *s)
 		s->tex_x = TEX_WIDTH - s->tex_x - 1;
 	s->step = 1.0 * TEX_HEIGHT / s->line_h;
 	s->texpos = (s->drawstart - s->screen_h / 2 + s->line_h / 2) * s->step;
-}
-
-void	put_wall_init(t_all *s, int x)
-{
-	s->camera_x = 2 * x / (double)s->screen_w - 1;
-	s->raydir_x = s->dir_x + s->plane_x * s->camera_x;
-	s->raydir_y = s->dir_y + s->plane_y * s->camera_x;
-	s->map_x = (int)(s->pos_x);
-	s->map_y = (int)(s->pos_y);
-	s->deltadist_x = fabs(1 / s->raydir_x);
-	s->deltadist_y = fabs(1 / s->raydir_y);
-	s->hit = 0;
 }
 
 void	put_wall_pixelput(t_all *s, int x)
@@ -122,7 +112,7 @@ void	put_wall_pixelput(t_all *s, int x)
 			my_mlx_pixel_put(s, x, y, s->floor_color);
 		y++;
 	}
-	s->buf.z_buffer[x] = s->perpwalldist;
+	s->buf.z_buf[x] = s->perpwalldist;
 }
 
 void	put_wall(t_all *s)
@@ -132,7 +122,14 @@ void	put_wall(t_all *s)
 	x = 0;
 	while (x < s->screen_w)
 	{
-		put_wall_init(s, x);
+		s->camera_x = 2 * x / (double)s->screen_w - 1;
+		s->raydir_x = s->dir_x + s->plane_x * s->camera_x;
+		s->raydir_y = s->dir_y + s->plane_y * s->camera_x;
+		s->map_x = (int)(s->pos_x);
+		s->map_y = (int)(s->pos_y);
+		s->deltadist_x = fabs(1 / s->raydir_x);
+		s->deltadist_y = fabs(1 / s->raydir_y);
+		s->hit = 0;
 		put_wall_1(s);
 		put_wall_2(s);
 		put_wall_3(s);

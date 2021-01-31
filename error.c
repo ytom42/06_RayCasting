@@ -6,16 +6,14 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 22:18:46 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/30 09:23:23 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/01/31 17:47:53 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	end(t_all *s, int n, int free_n)
+void	end_1(int n)
 {
-	printf("\x1b[31m-----------\n---error---\n-----------\n\x1b[0m");
-	all_free(s, free_n);
 	if (n == 1)
 		write(2, "Map is not closed\n", 18);
 	else if (n == 2)
@@ -36,7 +34,11 @@ void	end(t_all *s, int n, int free_n)
 		write(2, "Illegal RGB value\n", 18);
 	else if (n == 10)
 		write(2, "Space after texture file name\n", 30);
-	else if (n == 11)
+}
+
+void	end_2(int n)
+{
+	if (n == 11)
 		write(2, "Do not include line breaks in the map\n", 38);
 	else if (n == 12)
 		write(2, "The resolution is not the correct value\n", 40);
@@ -52,8 +54,17 @@ void	end(t_all *s, int n, int free_n)
 		write(2, "malloc faild\n", 13);
 	else if (n == 18)
 		write(2, "Failed to open file\n", 20);
-	printf("\x1b[31m--------------\n-leaks cub3D-\n-------------\n\x1b[0m");
-	system("leaks cub3D");
+	else if (n == 19)
+		write(2, "Texture size should be 64 * 64\n", 31);
+}
+
+void	end(t_all *s, int n, int free_n)
+{
+	if (s->win != NULL)
+		mlx_destroy_window(s->mlx, s->win);
+	all_free(s, free_n);
+	end_1(n);
+	end_2(n);
 	exit(0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 21:40:56 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/30 09:29:08 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/01/30 17:52:27 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	bmp_data(t_all *s, int fd)
 		x = 0;
 		while (x < s->screen_w)
 		{
-			// dst = (s->img.addr + (y * s->img.line_len + x * (s->img.bpp / 8)));
-			color = *(unsigned int*)(s->img.addr + (y * s->img.line_len + x * (s->img.bpp / 8)));
+			color = *(unsigned int*)(s->img.addr + \
+					(y * s->img.line_len + x * (s->img.bpp / 8)));
 			buffer[0] = (unsigned char)(color % 256);
 			buffer[1] = (unsigned char)(color / 256 % 256);
 			buffer[2] = (unsigned char)(color / 256 / 256 % 256);
