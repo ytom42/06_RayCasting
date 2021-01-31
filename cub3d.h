@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 11:30:10 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/31 16:42:14 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/02/01 07:16:22 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 # define TEX_WIDTH			64
 # define TEX_HEIGHT			64
 
-# define CUB				"test1.cub"
+// # define CUB				"test1.cub"
 
 typedef struct		s_tex
 {
@@ -111,6 +111,7 @@ typedef struct		s_all
 	void			*mlx;
 	void			*win;
 	t_img			img;
+	char			*file_name;
 
 	t_sp			sp;
 	t_sprite		*sprites;
@@ -195,7 +196,8 @@ char				*skip_space(char *line, int *i);
 int					check_flag(t_all *s);
 void				check_line(t_all *s, char *line, int index);
 void				check_map(t_all *s);
-int					check_name(char *name);
+int					check_save(char *name);
+int					check_cub(char *name, t_all *s);
 void				my_mlx_pixel_put(t_all *s, int x, int y, int color);
 void				my_mlx_pixel_put2(t_all *s, int x, int y, t_tex *tex);
 void				my_mlx_pixel_put3(t_all *s, int x, int y, t_tex *tex);

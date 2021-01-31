@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 01:00:45 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/31 01:45:01 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/02/01 07:27:58 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ void	first_read(t_all *s)
 	char	*tmp;
 
 	index = 0;
-	if ((fd = open(CUB, O_RDONLY)) == -1)
+	if ((fd = open(s->file_name, O_RDONLY)) == -1)
 		end(s, 18, -1);
 	read_info(s, fd);
 	read_map(s, fd, &index, &line);

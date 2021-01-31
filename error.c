@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 22:18:46 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/31 17:47:53 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/01/31 21:46:07 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	end_2(int n)
 	else if (n == 15)
 		write(2, "No newline after block\n", 23);
 	else if (n == 16)
-		write(2, "The only possible option is \"--save\"\n", 37);
+		write(2, "Argument error\n", 15);
 	else if (n == 17)
 		write(2, "malloc faild\n", 13);
 	else if (n == 18)

@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 01:02:33 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/31 01:59:32 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/02/01 07:17:16 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	second_read(t_all *s)
 	char	*tmp;
 
 	i = 0;
-	if ((fd = open(CUB, O_RDONLY)) == -1)
+	if ((fd = open(s->file_name, O_RDONLY)) == -1)
 		end(s, 18, -1);
 	while (s->map_before_line > 0)
 	{

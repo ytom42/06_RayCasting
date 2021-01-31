@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 11:30:01 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/29 08:30:03 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/02/01 07:31:07 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ int		main(int ac, char **av)
 {
 	t_all	s;
 
+	s.file_name = av[1];
 	init_all(&s);
-	if (ac == 1)
+	if (ac == 2)
 	{
 		if (!(s.win = mlx_new_window(s.mlx, s.screen_w, s.screen_h, "cub3D")))
 			end(&s, 17, 1);
@@ -26,7 +27,7 @@ int		main(int ac, char **av)
 		mlx_hook(s.win, 17, 0, close_window, &s);
 		mlx_loop(s.mlx);
 	}
-	else if (ac == 2 && check_name(av[1]))
+	else if (ac == 3 && check_save(av[2]))
 	{
 		put_wall(&s);
 		put_sprite(&s);
