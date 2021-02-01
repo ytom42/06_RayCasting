@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_key.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 18:35:05 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/31 17:47:37 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/02/01 13:31:58 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	push_rl(t_all *s, int key)
 int		push_key(int keycode, t_all *s)
 {
 	if (keycode == KEY_ESC)
-		end(s, 100, -1);
+		end(s, -1, -1);
 	else if (keycode == KEY_W)
 		push_ws(s, KEY_W);
 	else if (keycode == KEY_S)

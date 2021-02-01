@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 20:25:07 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/30 18:53:19 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/02/01 13:29:28 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	init_texaddr(t_all *s)
 void	init_all(t_all *s)
 {
 	if (!(s->mlx = mlx_init()))
-		end(s, 17, 0);
+		end(s, 17, -1);
 	init_flag(s);
 	init_var(s);
 	init_map(s);

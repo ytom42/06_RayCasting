@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 22:18:46 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/02/01 13:12:25 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/02/01 13:31:53 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ void	end(t_all *s, int n, int free_n)
 	if (s->win != NULL)
 		mlx_destroy_window(s->mlx, s->win);
 	all_free(s, free_n);
-	write(2, "Error\n", 6);
+	if (n >= 0)
+		write(2, "Error\n", 6);
 	end_1(n);
 	end_2(n);
 	exit(0);
