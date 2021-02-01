@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 11:30:10 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/02/01 11:18:26 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/02/01 20:04:54 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <fcntl.h>
 # include <math.h>
 
-# include "minilibx_opengl/mlx.h"
+# include "minilibx_mms/mlx.h"
 
 # define KEY_ESC			53
 # define KEY_W				13
@@ -174,6 +174,8 @@ typedef struct		s_all
 	int				r;
 	int				g;
 	int				b;
+	int				display_h;
+	int				display_w;
 }					t_all;
 
 void				init_all(t_all *s);
@@ -204,7 +206,7 @@ int					ft_strlen(char *s);
 void				ft_strlcpy(char *dst, char *src, int size);
 char				*ft_strdup(char *s);
 char				*ft_strjoin(char *s1, char *s2);
-int					ft_atoi_new(char *str, int *index);
+int					ft_atoi_new(char *str, int *index, int number);
 int					ft_isdigit(char c);
 int					ft_ismap(char *line);
 int					ft_allspace(char *line);

@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 20:23:37 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/02/01 11:08:30 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/02/01 20:09:05 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	get_rgb(t_all *s, char *line, int *i)
 {
-	s->r = ft_atoi_new(line, i);
+	s->r = ft_atoi_new(line, i, 2);
 	if (s->r < 0)
 		end(s, 9, -1);
 	if (line[*i] != ',')
@@ -22,7 +22,7 @@ void	get_rgb(t_all *s, char *line, int *i)
 	*i += 1;
 	if (!(ft_isdigit(line[*i])))
 		end(s, 14, -1);
-	s->g = ft_atoi_new(line, i);
+	s->g = ft_atoi_new(line, i, 2);
 	if (s->g < 0)
 		end(s, 9, -1);
 	if (line[*i] != ',')
@@ -30,7 +30,7 @@ void	get_rgb(t_all *s, char *line, int *i)
 	*i += 1;
 	if (!(ft_isdigit(line[*i])))
 		end(s, 14, -1);
-	s->b = ft_atoi_new(line, i);
+	s->b = ft_atoi_new(line, i, 2);
 	if (s->b < 0)
 		end(s, 9, -1);
 	if (!(ft_allspace(&line[*i])))

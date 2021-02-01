@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 10:09:08 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/02/01 12:23:36 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/02/01 20:34:08 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,19 @@ void	init_resolution(t_all *s, char *line)
 	if (s->flag.r == 1)
 		end(s, 6, -1);
 	skip_space(line, &i);
-	tmp = ft_atoi_new(line, &i);
-	if (tmp < 0 || tmp > 10000)
+	tmp = ft_atoi_new(line, &i, 1);
+	if (tmp > s->display_w)
+		tmp = s->display_w;
+	if (tmp < 0)
 		end(s, 20, -1);
 	s->screen_w = tmp;
 	skip_space(line, &i);
 	if (!(ft_isdigit(line[i])))
 		end(s, 12, -1);
-	tmp = ft_atoi_new(line, &i);
-	if (tmp < 0 || tmp > 10000)
+	tmp = ft_atoi_new(line, &i, 1);
+	if (tmp > s->display_h)
+		tmp = s->display_h;
+	if (tmp < 0)
 		end(s, 20, -1);
 	s->screen_h = tmp;
 	if (!(ft_allspace(&line[i])))

@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 11:29:59 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/02/01 12:25:18 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/02/01 20:32:03 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,15 +63,34 @@ char			*ft_strjoin(char *s1, char *s2)
 	return (ptr);
 }
 
-int				ft_atoi_new(char *str, int *index)
+int				ft_atoi_new(char *str, int *index, int number)
 {
 	int		n;
+	int		len;
 
 	n = 0;
-	while (str[*index] >= 48 && str[*index] <= 57)
+	len = 1;
+	if (number == 1)
 	{
-		n = n * 10 + (str[*index] - 48);
-		*index += 1;
+		while (str[*index] >= 48 && str[*index] <= 57)
+		{
+			if (n < 0 || len >= 10)
+				return (-1);
+			n = n * 10 + (str[*index] - 48);
+			*index += 1;
+			len++;
+		}
+		return (n);
 	}
-	return (n);
+	else
+	{
+		while (str[*index] >= 48 && str[*index] <= 57)
+		{
+			if (n > 255)
+				return (-1);
+			n = n * 10 + (str[*index] - 48);
+			*index += 1;
+		}
+		return (n);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 20:25:07 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/02/01 13:29:28 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/02/01 20:07:55 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	init_var(t_all *s)
 	s->map_width = 0;
 	s->sprite_len = 0;
 	s->map_before_line = 0;
+	mlx_get_screen_size(s->mlx, &s->display_w, &s->display_h);
 }
 
 void	init_window(t_all *s)

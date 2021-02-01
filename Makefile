@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+         #
+#    By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/19 23:21:23 by ytomiyos          #+#    #+#              #
-#    Updated: 2021/02/01 07:24:50 by ytomiyos         ###   ########.fr        #
+#    Updated: 2021/02/01 19:38:24 by ytomiyos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,8 @@ OBJS	=	$(SRCS:.c=.o)
 all		:	$(NAME)
 
 $(NAME)	:	$(OBJS)
-		$(CC) $(CFLAGS) -L minilibx_opengl/ -l mlx -framework OpenGL -framework AppKit -o $(NAME) $(OBJS)
+		$(CC) $(CFLAGS) libmlx.dylib -framework OpenGL -framework AppKit -o $(NAME) $(OBJS)
+		# $(CC) $(CFLAGS) -L minilibx_opengl/ -l mlx -framework OpenGL -framework AppKit -o $(NAME) $(OBJS)
 
 clean	:
 			rm -f *.o
