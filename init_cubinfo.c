@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_cubinfo.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 10:09:08 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/31 17:38:35 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/02/01 12:23:36 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,15 @@ void	init_resolution(t_all *s, char *line)
 		end(s, 6, -1);
 	skip_space(line, &i);
 	tmp = ft_atoi_new(line, &i);
+	if (tmp < 0 || tmp > 10000)
+		end(s, 20, -1);
 	s->screen_w = tmp;
 	skip_space(line, &i);
 	if (!(ft_isdigit(line[i])))
 		end(s, 12, -1);
 	tmp = ft_atoi_new(line, &i);
+	if (tmp < 0 || tmp > 10000)
+		end(s, 20, -1);
 	s->screen_h = tmp;
 	if (!(ft_allspace(&line[i])))
 		end(s, 12, -1);

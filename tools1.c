@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 11:29:59 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/30 19:29:04 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/02/01 12:25:18 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,6 @@ int				ft_atoi_new(char *str, int *index)
 	n = 0;
 	while (str[*index] >= 48 && str[*index] <= 57)
 	{
-		if (n > 255)
-			return (-1);
 		n = n * 10 + (str[*index] - 48);
 		*index += 1;
 	}

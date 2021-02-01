@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 22:18:46 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/31 21:46:07 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/02/01 13:12:25 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void	end_2(int n)
 		write(2, "Failed to open file\n", 20);
 	else if (n == 19)
 		write(2, "Texture size should be 64 * 64\n", 31);
+	else if (n == 20)
+		write(2, "Please set the resolution to 10000 or less\n", 43);
 }
 
 void	end(t_all *s, int n, int free_n)
@@ -63,6 +65,7 @@ void	end(t_all *s, int n, int free_n)
 	if (s->win != NULL)
 		mlx_destroy_window(s->mlx, s->win);
 	all_free(s, free_n);
+	write(2, "Error\n", 6);
 	end_1(n);
 	end_2(n);
 	exit(0);
