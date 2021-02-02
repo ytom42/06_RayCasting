@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools4.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 19:31:58 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/30 19:33:05 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/02/02 16:23:07 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,37 @@ int		ft_allspace(char *line)
 		i++;
 	}
 	return (1);
+}
+
+int				ft_atoi_rgb(char *str, int *index)
+{
+	int		n;
+
+	n = 0;
+	while (str[*index] >= 48 && str[*index] <= 57)
+	{
+		if (n > 255)
+			return (-1);
+		n = n * 10 + (str[*index] - 48);
+		*index += 1;
+	}
+	return (n);
+}
+
+int				ft_atoi_new(char *str, int *index)
+{
+	int		n;
+	int		len;
+
+	n = 0;
+	len = 1;
+	while (str[*index] >= 48 && str[*index] <= 57)
+	{
+		if (n < 0 || len >= 10)
+			return (-1);
+		n = n * 10 + (str[*index] - 48);
+		*index += 1;
+		len++;
+	}
+	return (n);
 }
