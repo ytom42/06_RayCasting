@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 11:30:10 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/02/02 15:35:48 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/02/03 11:12:56 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,6 +176,7 @@ typedef struct		s_all
 	int				b;
 	int				display_h;
 	int				display_w;
+	int				low;
 }					t_all;
 
 void				init_all(t_all *s);

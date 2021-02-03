@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   first_read.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 01:00:45 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/02/01 07:27:58 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/02/03 11:50:50 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ void	read_map(t_all *s, int fd, int *index, char **line)
 		tmp = *line;
 		free(tmp);
 		s->map_height += 1;
+		if (s->map_height > 200)
+			end(s, 21, -1);
 		*index += 1;
 	}
 	if (n == 0 && (ft_strlen(*line)) != 0)

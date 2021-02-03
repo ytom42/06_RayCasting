@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 19:31:58 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/02/02 16:23:07 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/02/03 11:15:10 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int		ft_allspace(char *line)
 	return (1);
 }
 
-int				ft_atoi_rgb(char *str, int *index)
+int		ft_atoi_rgb(char *str, int *index)
 {
 	int		n;
 
@@ -60,7 +60,7 @@ int				ft_atoi_rgb(char *str, int *index)
 	return (n);
 }
 
-int				ft_atoi_new(char *str, int *index)
+int		ft_atoi_new(char *str, int *index)
 {
 	int		n;
 	int		len;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_line.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 00:37:11 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/01/31 00:50:13 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/02/03 11:51:28 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ void	check_line(t_all *s, char *line, int index)
 
 	i = 0;
 	len = ft_strlen(line);
+	if (len > 200)
+		end(s, 21, -1);
 	if (s->map_width < len)
 		s->map_width = len;
 	while (line[i])

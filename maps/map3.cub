@@ -1,4 +1,4 @@
-R 1200 900
+R 120 90
 NO ./pics/eagle.xpm
 SO ./pics/redbrick.xpm
 WE ./pics/wood.xpm
