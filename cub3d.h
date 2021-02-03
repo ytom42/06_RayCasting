@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 11:30:10 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/02/03 11:12:56 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/02/03 19:24:34 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,11 +220,17 @@ void				put_wall(t_all *s);
 void				put_sprite(t_all *s);
 void				first_read(t_all *s);
 void				second_read(t_all *s);
+void				read_aftermap(t_all *s, int fd, char **line);
 
 void				north_tex_to_img(t_all *s, char *line);
 void				south_tex_to_img(t_all *s, char *line);
 void				east_tex_to_img(t_all *s, char *line);
 void				west_tex_to_img(t_all *s, char *line);
+
+void				player_n(t_all *s, int index, int *i);
+void				player_s(t_all *s, int index, int *i);
+void				player_w(t_all *s, int index, int *i);
+void				player_e(t_all *s, int index, int *i);
 
 void				create_bmp(t_all *s);
 void				bmp_file(t_all *s, int fd);

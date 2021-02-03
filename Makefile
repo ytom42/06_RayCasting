@@ -6,7 +6,7 @@
 #    By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/19 23:21:23 by ytomiyos          #+#    #+#              #
-#    Updated: 2021/02/01 19:38:24 by ytomiyos         ###   ########.fr        #
+#    Updated: 2021/02/03 19:24:12 by ytomiyos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,8 +27,10 @@ SRCS	=	cub3d.c \
 			init_cubinfo.c \
 			check_map.c \
 			check_line.c \
+			move.c \
 			sort_sprites.c \
 			first_read.c \
+			first_read2.c \
 			second_read.c \
 			create_img.c \
 			push_key.c \

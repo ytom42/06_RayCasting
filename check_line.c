@@ -6,75 +6,29 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 00:37:11 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/02/03 11:51:28 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/02/03 19:07:46 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	player_n(t_all *s, int index, int *i)
+void	check_len(t_all *s, char *line)
 {
-	if (s->flag.pos == 1)
-		end(s, 7, -1);
-	s->pos_x = index + 0.5;
-	s->pos_y = *i + 0.5;
-	s->dir_x = -1;
-	s->dir_y = 0;
-	s->plane_x = 0;
-	s->plane_y = 0.66;
-	s->flag.pos = 1;
-}
-
-void	player_s(t_all *s, int index, int *i)
-{
-	if (s->flag.pos == 1)
-		end(s, 7, -1);
-	s->pos_x = index + 0.5;
-	s->pos_y = *i + 0.5;
-	s->dir_x = 1;
-	s->dir_y = 0;
-	s->plane_x = 0;
-	s->plane_y = -0.66;
-	s->flag.pos = 1;
-}
-
-void	player_w(t_all *s, int index, int *i)
-{
-	if (s->flag.pos == 1)
-		end(s, 7, -1);
-	s->pos_x = index + 0.5;
-	s->pos_y = *i + 0.5;
-	s->dir_x = 0;
-	s->dir_y = -1;
-	s->plane_x = -0.66;
-	s->plane_y = 0;
-	s->flag.pos = 1;
-}
-
-void	player_e(t_all *s, int index, int *i)
-{
-	if (s->flag.pos == 1)
-		end(s, 7, -1);
-	s->pos_x = index + 0.5;
-	s->pos_y = *i + 0.5;
-	s->dir_x = 0;
-	s->dir_y = 1;
-	s->plane_x = 0.66;
-	s->plane_y = 0;
-	s->flag.pos = 1;
-}
-
-void	check_line(t_all *s, char *line, int index)
-{
-	int		i;
 	int		len;
 
-	i = 0;
 	len = ft_strlen(line);
 	if (len > 200)
 		end(s, 21, -1);
 	if (s->map_width < len)
 		s->map_width = len;
+}
+
+void	check_line(t_all *s, char *line, int index)
+{
+	int		i;
+
+	i = 0;
+	check_len(s, line);
 	while (line[i])
 	{
 		if (line[i] == '2')

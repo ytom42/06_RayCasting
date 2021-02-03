@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 18:35:05 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/02/01 13:31:58 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/02/03 18:50:42 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,8 @@ int		push_key(int keycode, t_all *s)
 		push_rl(s, RIGHT);
 	else if (keycode == LEFT)
 		push_rl(s, LEFT);
+	else
+		return (0);
 	create_img(s);
 	return (0);
 }
