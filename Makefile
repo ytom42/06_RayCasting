@@ -6,7 +6,7 @@
 #    By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/19 23:21:23 by ytomiyos          #+#    #+#              #
-#    Updated: 2021/02/03 19:24:12 by ytomiyos         ###   ########.fr        #
+#    Updated: 2021/02/03 19:58:34 by ytomiyos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,6 @@ all		:	$(NAME)
 
 $(NAME)	:	$(OBJS)
 		$(CC) $(CFLAGS) libmlx.dylib -framework OpenGL -framework AppKit -o $(NAME) $(OBJS)
-		# $(CC) $(CFLAGS) -L minilibx_opengl/ -l mlx -framework OpenGL -framework AppKit -o $(NAME) $(OBJS)
 
 clean	:
 			rm -f *.o

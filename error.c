@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 22:18:46 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/02/03 11:41:23 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/02/04 18:47:32 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	end_2(int n)
 		write(2, "The resolution should be 1 or more \
 and 999999999 or less\n", 57);
 	else if (n == 21)
-		write(2, "Map size should be within 500 * 500\n", 36);
+		write(2, "Map size should be within 200 * 200\n", 36);
 }
 
 void	end(t_all *s, int n, int free_n)

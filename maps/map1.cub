@@ -1,9 +1,8 @@
 R 1200 900
-NO ./pics/mossy.xpm
+NO ./pics/eagle.xpm
 SO ./pics/redbrick.xpm
 WE ./pics/wood.xpm
 EA ./pics/greystone.xpm
-
 S ./pics/barrel.xpm
 F 0,50,100
 C 255,255,255

@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 11:30:01 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/02/01 19:52:00 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/02/04 18:57:51 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int		main(int ac, char **av)
 {
 	t_all	s;
 
+	if (ac == 1)
+		end(&s, 16, 1);
 	s.file_name = av[1];
 	init_all(&s);
 	if (ac == 2)
