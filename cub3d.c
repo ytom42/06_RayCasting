@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 11:30:01 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/02/04 19:56:49 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/02/05 11:15:24 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,5 @@ int		main(int ac, char **av)
 		put_sprite(&s);
 		create_bmp(&s);
 	}
-	else
-		end(&s, 16, 1);
 	return (0);
 }
